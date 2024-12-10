@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: Gilroy;
+    letter-spacing: -.05em;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.helvetica{
+    font-family: Helvetica now display;
+}
+.bebas{
+    font-family: bebas neue;
+}
+.neue{
+    font-family: Neue Machina;
+}
+
+
+
+/* CUSTOM CSS */
+.big-btn{
+    position: relative;
+    overflow: hidden;
+}
+.big-btn div span{
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+    z-index: 20;
+}
+.big-btn div::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    z-index: 10;
+    width: 100%;
+    background-color: black;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.big-btn:hover{
+    scale: 1.06;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.big-btn{
+    scale: 1;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.big-btn:hover div span{
+    transform: translateY(-100%);
+    z-index: 20;
+    color: white;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.big-btn:hover div::after{
+    z-index: 10;
+    top: 0;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.opener-divs div{
+    transition: all .3s ease-in-out;
+}
+.opener-divs:hover div{
+    height: 100%;
+    transition: all .3s ease-in-out;
+}
+
+.button-info:hover::after{
+    top: 0;
+}
+
+.button-info h1{
+    z-index: 20;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.button-info:hover h1{
+    color: white;
+    z-index: 20;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.button-info::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 10;
+    transition: all .6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+
+@keyframes anime {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.actual-collab{
+    animation: anime 10s linear infinite;
+}
+
+.footer-div{
+    animation: anime 10s linear infinite;
+}
