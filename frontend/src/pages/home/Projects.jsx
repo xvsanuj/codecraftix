@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React from "react";
 
-const Projects = () => {
+const Projects = ({cursor}) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -104,7 +104,7 @@ const Projects = () => {
       <div className="w-full rounded-2xl mt-20 overflow-hidden flex gap-36">
         <div className="flex flex-col gap-36">
           <div className="project-cards-1">
-            <div className="h-[70vh] overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
+            <div onMouseMove={() => cursor.setText('Show')} onMouseLeave={() => cursor.removeText()} className="h-[70vh] cursor-pointer overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
               <img src="https://i.pinimg.com/736x/06/de/27/06de270cdc00638891b873f1015e2b1d.jpg" alt="" className="h-full w-full object-cover object-center" />
             </div>
             <p className="font-base text-2xl px-2 py-4 helvetica flex items-center">
@@ -113,7 +113,7 @@ const Projects = () => {
             </p>
           </div>
           <div className="project-cards-2">
-            <div className="h-[70vh] overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
+            <div onMouseMove={() => cursor.setText('Show')} onMouseLeave={() => cursor.removeText()} className="h-[70vh] cursor-pointer overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
               <img src="https://i.pinimg.com/736x/54/bf/24/54bf24ade13bc7def0d2b7b170deba8e.jpg" alt="" className="h-full w-full object-cover object-center" />
             </div>
             <p className="font-base text-2xl px-2 py-4 helvetica flex items-center">
@@ -122,7 +122,7 @@ const Projects = () => {
             </p>
           </div>
           <div className="project-cards-3">
-            <div className="h-[70vh] overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
+            <div onMouseMove={() => cursor.setText('Show')} onMouseLeave={() => cursor.removeText()} className="h-[70vh] cursor-pointer overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
               <img src="https://i.pinimg.com/736x/cc/a1/28/cca128f3190ac3307abbc7b815544f3f.jpg" alt="" className="h-full w-full object-cover object-center" />
             </div>
             <p className="font-base text-2xl px-2 py-4 helvetica flex items-center">
@@ -133,7 +133,7 @@ const Projects = () => {
         </div>
         <div className="mt-44 flex flex-col gap-36">
           <div className="project-cards-1">
-            <div className="h-[70vh] overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
+            <div onMouseMove={() => cursor.setText('Show')} onMouseLeave={() => cursor.removeText()} className="h-[70vh] cursor-pointer overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
               <img src="https://i.pinimg.com/736x/29/ec/27/29ec2731bcf9f4c366506710250df10e.jpg" alt="" className="h-full w-full object-cover object-center" />
             </div>
             <p className="font-base text-2xl px-2 py-4 helvetica flex items-center">
@@ -142,7 +142,7 @@ const Projects = () => {
             </p>
           </div>
           <div className="project-cards-2">
-            <div className="h-[70vh] overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
+            <div onMouseMove={() => cursor.setText('Show')} onMouseLeave={() => cursor.removeText()} className="h-[70vh] cursor-pointer overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
               <img src="https://i.pinimg.com/736x/c7/98/0c/c7980c913690daf13e59c7645a8be918.jpg" alt="" className="h-full w-full object-cover object-center" />
             </div>
             <p className="font-base text-2xl px-2 py-4 helvetica flex items-center">
@@ -151,7 +151,7 @@ const Projects = () => {
             </p>
           </div>
           <div className="project-cards-3">
-            <div className="h-[70vh] overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
+            <div onMouseMove={() => cursor.setText('Show')} onMouseLeave={() => cursor.removeText()} className="h-[70vh] cursor-pointer overflow-hidden rounded-3xl w-[25vw] bg-zinc-600">
               <img src="https://i.pinimg.com/736x/ec/a4/a3/eca4a3ca8dae2181d7592bb727792acb.jpg" alt="" className="h-full w-full object-cover object-center" />
             </div>
             <p className="font-base text-2xl px-2 py-4 helvetica flex items-center">

@@ -1,16 +1,16 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 
-const Description = () => {
+const Description = ({ cursor, isHovered }) => {
   const video = useRef(null);
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     gsap.from(".text-span span", {
       y: 200,
-      duration: .5,
+      duration: 0.5,
       stagger: 0.1,
       ease: "expo",
       scrollTrigger: {
@@ -21,7 +21,7 @@ const Description = () => {
     });
     gsap.from(".tag-pin span", {
       y: 200,
-      duration: .6,
+      duration: 0.6,
       stagger: 0.06,
       ease: "expo",
       scrollTrigger: {
@@ -77,7 +77,12 @@ const Description = () => {
           alt=""
         />
       </h1>
-      <div ref={video} className="h-[70vh] relative w-full rounded-2xl mt-1 overflow-hidden bg-zinc-300">
+      <div
+        ref={video}
+        onMouseMove={() => cursor.setText('Play')}
+        onMouseLeave={() => cursor.removeText()}
+        className="hover-video h-[70vh] relative w-full rounded-2xl mt-1 overflow-hidden bg-zinc-300"
+      >
         <video
           className="h-full scale-110 w-full object-cover absolute object-center"
           autoPlay

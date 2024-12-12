@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 
-const About = () => {
+const About = ({cursor}) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(".about-span span", {
@@ -113,7 +113,7 @@ const About = () => {
             </div>
           </h1>
           <button className="big-btn px-52 py-24 rounded-full text-3xl border-2 border-black mt-10">
-            <div className="big-btn-div flex flex-col h-10 overflow-hidden">
+            <div data-cursor="-inverse" className="big-btn-div flex flex-col h-10 overflow-hidden">
               <span className="inline-block">What we do</span>
               <span className="inline-block">What we do</span>
             </div>

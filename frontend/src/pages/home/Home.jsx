@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../components/Header";
 import Landing from "./Landing";
 import Description from "./Description";
@@ -11,61 +11,67 @@ import Letstalk from "./Letstalk";
 import gsap from "gsap";
 
 const Home = ({ lenis }) => {
+  const [text, setText] = useState("Play");
+  const [isHover, setIsHover] = useState(true);
   const cursor = useRef();
-  const mouse = { x: 0, y: 0 };
-  const smoothMouse = { x: 0, y: 0 };
-  const mouseVelocity = { x: 0, y: 0 };
-  const lerp = (x, y, a) => x * (1 - a) + y * a;
+  const inner = useRef();
+  const smoothPosition = { x: 0, y: 0 };
+  const mousePosition = { x: 0, y: 0 };
+  const skewing = 3;
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // GSAP QuickSetters for cursor manipulation
+    const lerp = (start, end, factor) => start * (1 - factor) + end * factor;
     const setter = {
       x: gsap.quickSetter(cursor.current, "x", "px"),
       y: gsap.quickSetter(cursor.current, "y", "px"),
-      scaleY: gsap.quickSetter(cursor.current, "scaleY"),
-      scaleX: gsap.quickSetter(cursor.current, "scaleX"),
       rotation: gsap.quickSetter(cursor.current, "rotation", "deg"),
-      wc: gsap.quickSetter(cursor.current, "willChange"),
+      scaleX: gsap.quickSetter(cursor.current, "scaleX"),
+      scaleY: gsap.quickSetter(cursor.current, "scaleY"),
+      innerRotation: gsap.quickSetter(inner.current, "rotation", "deg"),
     };
-
-    // GSAP Ticker for smooth animations
-    const ticker = () => {
-      smoothMouse.x = lerp(smoothMouse.x, mouse.x, 0.15);
-      smoothMouse.y = lerp(smoothMouse.y, mouse.y, 0.15);
-
-      mouseVelocity.x = Math.abs(mouse.x - smoothMouse.x);
-      mouseVelocity.y = Math.abs(mouse.y - smoothMouse.y);
-
-      const angle =
-        Math.atan2(mouse.y - smoothMouse.y, mouse.x - smoothMouse.x) *
-        (180 / Math.PI);
-      const scaleAmount = Math.min(
-        (mouseVelocity.x + mouseVelocity.y) * 0.0035,
-        0.5
+    window.addEventListener("mousemove", (e) => {
+      mousePosition.x = e.clientX;
+      mousePosition.y = e.clientY;
+  
+      if (!smoothPosition.x && !smoothPosition.y) {
+        smoothPosition.x = e.clientX;
+        smoothPosition.y = e.clientY;
+      }
+    });
+  
+    gsap.ticker.add(() => {
+      // Smooth the position using lerp
+      smoothPosition.x = lerp(smoothPosition.x, mousePosition.x, 0.1);
+      smoothPosition.y = lerp(smoothPosition.y, mousePosition.y, 0.1);
+      const velocity = Math.sqrt(
+        Math.pow(mousePosition.x - smoothPosition.x, 2) +
+        Math.pow(mousePosition.y - smoothPosition.y, 2)
       );
-
-      setter.x(smoothMouse.x);
-      setter.y(smoothMouse.y);
-      setter.scaleY(1 - scaleAmount);
-      setter.scaleX(1 + scaleAmount);
+      const skewAmount = Math.min(velocity * 0.001, 0.15) * skewing;
+      const angle =
+        (180 *
+          Math.atan2(
+            mousePosition.y - smoothPosition.y,
+            mousePosition.x - smoothPosition.x
+          )) /
+        Math.PI;
+  
+      setter.x(smoothPosition.x);
+      setter.y(smoothPosition.y);
       setter.rotation(angle);
-      setter.wc("transform");
-    };
+      setter.scaleX(1 + skewAmount);
+      setter.scaleY(1 - skewAmount);
+      setter.innerRotation(-angle);
+    });
 
-    gsap.ticker.add(ticker);
-
-    // Cleanup on unmount
+    gsap.ticker.fps(999999999);
+  
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      gsap.ticker.remove(ticker);
+      window.removeEventListener("mousemove", () => {});
+      gsap.ticker.remove(() => {});
     };
   }, []);
+  
+
   return (
     <div>
       <Header lenis={lenis} />
@@ -77,9 +83,14 @@ const Home = ({ lenis }) => {
       <Philosophy />
       <Footer />
       <Letstalk />
-      <div
-        ref={cursor}
-        className="fixed z-50 top-0 left-0 pointer-events-none -translate-x-1/2 -translate-y-1/2 h-3 w-3 rounded-full bg-black grid place-items-center">
+      <div ref={cursor} className={`cursor ${isHover ? "scale-up" : ""}`}>
+        <div ref={inner} className="cursorInner">
+          <div className="cursorText">
+            {
+              <span>{text}</span>
+            }
+          </div>
+        </div>
       </div>
     </div>
   );

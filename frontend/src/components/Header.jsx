@@ -2,17 +2,17 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
 const Header = ({ lenis }) => {
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true)
-  const [menuOpen, setmenuOpen] = useState(false)
-  const [size, setSize] = useState({ width: 0, height: 0 })
-  const [isAnimating, setIsAnimating] = useState(false)
-  const tl = gsap.timeline()
-  const navbar = useRef() 
-  const line = useRef()
-  const fulloffset = useRef()
-  const secondline = useRef()
-  const offsetBar = useRef()
-  let lastScroll = 0
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [menuOpen, setmenuOpen] = useState(false);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [isAnimating, setIsAnimating] = useState(false);
+  const tl = gsap.timeline();
+  const navbar = useRef();
+  const line = useRef();
+  const fulloffset = useRef();
+  const secondline = useRef();
+  const offsetBar = useRef();
+  let lastScroll = 0;
   useEffect(() => {
     const onScroll = () => {
       const currentScroll = lenis.scroll;
@@ -21,7 +21,7 @@ const Header = ({ lenis }) => {
     };
     lenis.on("scroll", onScroll);
     return () => lenis.off("scroll", onScroll);
-  }, [lenis])
+  }, [lenis]);
   useEffect(() => {
     if (!menuOpen) {
       if (isNavbarVisible) {
@@ -38,7 +38,7 @@ const Header = ({ lenis }) => {
         });
       }
     }
-  }, [isNavbarVisible])
+  }, [isNavbarVisible]);
   useEffect(() => {
     if (line.current) {
       setSize({
@@ -46,18 +46,22 @@ const Header = ({ lenis }) => {
         height: line.current.clientHeight,
       });
     }
-  }, [])
+  }, []);
   const handleNavClick = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-  
+
     const newTimeline = gsap.timeline({
       onComplete: () => setIsAnimating(false),
     });
-  
+
     if (!menuOpen) {
       newTimeline
-        .to([line.current, secondline.current], { width: 0, duration: 0.3 }, "timeSet")
+        .to(
+          [line.current, secondline.current],
+          { width: 0, duration: 0.3 },
+          "timeSet"
+        )
         .set(line.current, { rotate: 45, top: 0 })
         .set(secondline.current, { rotate: -45, top: 0, bottom: "auto" })
         .to([line.current, secondline.current], {
@@ -68,53 +72,92 @@ const Header = ({ lenis }) => {
           stagger: 0.2,
         })
         .to(secondline.current, { y: "-50%", bottom: "50%", duration: 0.3 })
-        .to(offsetBar.current, { right: 0, ease: "expo.out", duration: 1.5 }, "timeSet")
-        .to(fulloffset.current, { 
-          display: "block", 
-          duration: 0,
-        }, "timeSet")
-        .to(fulloffset.current, { 
-          opacity: "50%", 
-          duration: 1
-        }, "<");
+        .to(
+          offsetBar.current,
+          { right: 0, ease: "expo.out", duration: 1.5 },
+          "timeSet"
+        )
+        .to(
+          fulloffset.current,
+          {
+            display: "block",
+            duration: 0,
+          },
+          "timeSet"
+        )
+        .to(
+          fulloffset.current,
+          {
+            opacity: "50%",
+            duration: 1,
+          },
+          "<"
+        );
     } else {
       newTimeline
-        .to([line.current, secondline.current], { rotate: 0, duration: 0.3 }, "timeSet")
-        .to([line.current, secondline.current], { y: 0, top: "32%", duration: 0.3 })
+        .to(
+          [line.current, secondline.current],
+          { rotate: 0, duration: 0.3 },
+          "timeSet"
+        )
+        .to([line.current, secondline.current], {
+          y: 0,
+          top: "32%",
+          duration: 0.3,
+        })
         .to(
           secondline.current,
-          { rotate: 0, top: "68%", y: -size.height, duration: 0.3 },"<")
-        .to(offsetBar.current, { right: "-50%", duration: .5}, "timeSet")
-        .to(fulloffset.current, { 
-          opacity: 0, 
-          duration: 1
-        }, "timeSet")
-        .set(fulloffset.current, { 
-          display: "none"
+          { rotate: 0, top: "68%", y: -size.height, duration: 0.3 },
+          "<"
+        )
+        .to(offsetBar.current, { right: "-50%", duration: 0.5 }, "timeSet")
+        .to(
+          fulloffset.current,
+          {
+            opacity: 0,
+            duration: 1,
+          },
+          "timeSet"
+        )
+        .set(fulloffset.current, {
+          display: "none",
         });
     }
     setmenuOpen((prev) => !prev);
-  }
+  };
   const handleOutsideClick = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    tl
-    .to([line.current, secondline.current], { rotate: 0, duration: 0.3 }, "timeSet")
-    .to([line.current, secondline.current], { y: 0, top: "32%", duration: 0.3 })
-    .to(
-      secondline.current,
-      { rotate: 0, top: "68%", y: -size.height, duration: 0.3 },"<")
-    .to(offsetBar.current, { right: "-50%" }, "timeSet")
-    .to(fulloffset.current, { 
-      opacity: 0, 
-      duration: 1
-    }, "timeSet")
-    .set(fulloffset.current, { 
-      display: "none"
-    });
+    tl.to(
+      [line.current, secondline.current],
+      { rotate: 0, duration: 0.3 },
+      "timeSet"
+    )
+      .to([line.current, secondline.current], {
+        y: 0,
+        top: "32%",
+        duration: 0.3,
+      })
+      .to(
+        secondline.current,
+        { rotate: 0, top: "68%", y: -size.height, duration: 0.3 },
+        "<"
+      )
+      .to(offsetBar.current, { right: "-50%" }, "timeSet")
+      .to(
+        fulloffset.current,
+        {
+          opacity: 0,
+          duration: 1,
+        },
+        "timeSet"
+      )
+      .set(fulloffset.current, {
+        display: "none",
+      });
     setmenuOpen((prev) => !prev);
     setIsAnimating(false);
-  }
+  };
   return (
     <div
       ref={navbar}
@@ -148,7 +191,9 @@ const Header = ({ lenis }) => {
         </a>
       </div>
       <div className="menuButtons z-50 w-[20%] flex justify-end">
-        <div onClick={handleNavClick} className="relative cursor-pointer h-[35px] w-[35px]">
+        <div
+          onClick={handleNavClick}
+          className="relative cursor-pointer h-[35px] w-[35px]">
           <div
             ref={line}
             className="line absolute left-0 top-[32%] w-full h-[.1vw] bg-black"
@@ -159,10 +204,73 @@ const Header = ({ lenis }) => {
           ></div>
         </div>
       </div>
-      <div ref={fulloffset} onClick={handleOutsideClick} className="fixed h-screen top-0 left-0 bg-black hidden z-30 w-full"></div>
-      <div ref={offsetBar} className="fixed top-0 -right-1/2 w-1/2 h-screen z-40 bg-white">
+      <div
+        ref={fulloffset}
+        onClick={handleOutsideClick}
+        className="fixed h-screen top-0 left-0 bg-black hidden z-30 w-full"
+      ></div>
+      <div
+        ref={offsetBar}
+        className="fixed top-0 -right-1/2 w-1/2 h-screen z-40 bg-white">
         <div>
-          <div></div>
+          <div className="mt-48 pl-36">
+            <div className="flex gap-28">
+              <div>
+                <h1 className="font-medium text-zinc-500">Social Media</h1>
+                <div className="flex flex-col gap-4 mt-10">
+                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
+                    <span className="text-zinc-500">Instagram</span>
+                    <span className="text-zinc-500">Instagram</span>
+                  </p>
+                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
+                    <span className="text-zinc-500">Facebook</span>
+                    <span className="text-zinc-500">Facebook</span>
+                  </p>
+                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
+                    <span className="text-zinc-500">LinkedIn</span>
+                    <span className="text-zinc-500">LinkedIn</span>
+                  </p>
+                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
+                    <span className="text-zinc-500">Twitter</span>
+                    <span className="text-zinc-500">Twitter</span>
+                  </p>
+                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
+                    <span className="text-zinc-500">Youtube</span>
+                    <span className="text-zinc-500">Youtube</span>
+                  </p>
+                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
+                    <span className="text-zinc-500">Tiktok</span>
+                    <span className="text-zinc-500">Tiktok</span>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <h1 className="font-medium text-zinc-500">Menu</h1>
+                <div className="flex flex-col gap-4 mt-10">
+                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
+                    <span className="text-5xl">Home</span>
+                    <span className="text-5xl">Home</span>
+                  </p>
+                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
+                    <span className="text-5xl">Projects</span>
+                    <span className="text-5xl">Projects</span>
+                  </p>
+                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
+                    <span className="text-5xl">Workflow</span>
+                    <span className="text-5xl">Workflow</span>
+                  </p>
+                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
+                    <span className="text-5xl">Minority</span>
+                    <span className="text-5xl">Minority</span>
+                  </p>
+                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
+                    <span className="text-5xl">Pricing</span>
+                    <span className="text-5xl">Pricing</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div></div>
         </div>
       </div>

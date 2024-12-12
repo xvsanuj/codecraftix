@@ -220,7 +220,7 @@ const Footer = () => {
           <div className='px-32 py-10 flex justify-between items-center'>
             <h1 className='text-lg font-medium w-96'>Main Office - <span className='text-3xl helvetica font-normal'>901 N Pitt Street
             Alexandria VA, 22314</span></h1>
-            <div className='button-info relative overflow-hidden cursor-pointer border border-black px-14 py-4 rounded-full font-semibold'>
+            <div data-cursor="-inverse" className='button-info relative overflow-hidden cursor-pointer border border-black px-14 py-4 rounded-full font-semibold'>
               <h1 className='relative'>info@craftix@gmail.com</h1>
             </div>
           </div>
