@@ -126,20 +126,20 @@
 }
 
 @font-face {
-  font-family: 'Neue Machina';
-  src: url('/font/NeueMachina-Light.ttf');
+  font-family: Neue Machina;
+  src: url('/font/NeueMachina-Light.otf');
   font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Neue Machina'; 
-  src: url('/font/NeueMachina-Regular.ttf');
+  font-family: Neue Machina; 
+  src: url('/font/NeueMachina-Regular.otf');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Neue Machina';
-  src: url('/font/NeueMachina-Ultrabold.ttf'); 
+  font-family: Neue Machina;
+  src: url('/font/NeueMachina-Ultrabold.otf'); 
   font-weight: 800;
 }
 
