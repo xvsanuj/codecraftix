@@ -16,6 +16,132 @@
   font-family: 'bebas neue';
   src: url('/font/BebasNeue-Regular.ttf');
 }
+@font-face {
+  font-family: Gilroy;
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-Thin.ttf');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-UltraLight.ttf');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-ExtraBold.ttf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/font/Gilroy-Black.ttf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Hairline.ttf');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-ExtLt.ttf');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Thin.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Medium.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-ExtBlk.ttf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Helvetica now display';
+  src: url('/font/HelveticaNowDisplay-Black.ttf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('/font/NeueMachina-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Neue Machina'; 
+  src: url('/font/NeueMachina-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('/font/NeueMachina-Ultrabold.ttf'); 
+  font-weight: 800;
+}
 
 .helvetica {
   font-family: Helvetica now display;
