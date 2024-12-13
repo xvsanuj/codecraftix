@@ -162,18 +162,33 @@ const Header = ({ lenis, setNavBtnPos, elemDims, stickyElement }) => {
     setIsAnimating(false);
   };
   useEffect(() => {
-    const stickyElemDims = centerPos.current.getBoundingClientRect()
-    center.x = stickyElemDims.left + stickyElemDims.width / 2;
-    center.y = stickyElemDims.top + stickyElemDims.height / 2;
-  }, [center])
-  stickyElement(centerPos.current)
+    const stickyElemDims = centerPos.current.getBoundingClientRect();
+    const center = {
+      x: stickyElemDims.left + stickyElemDims.width / 2,
+      y: stickyElemDims.top + stickyElemDims.height / 2,
+    };
+  
+    // Update sticky element if the callback is provided
+    if (stickyElement) {
+      stickyElement(center);
+    }
+  }, [stickyElement]);
+  
   const handleNavPos = (e) => {
-    elemDims(centerPos.current.getBoundingClientRect())
-    setNavBtnPos(center)
-  }
-  const handleNavOut = (e) => {
-    setNavBtnPos()
-  }
+    if (elemDims) {
+      elemDims(centerPos.current.getBoundingClientRect());
+    }
+  
+    // Use debounced updates to avoid excessive state changes
+    setNavBtnPos && setNavBtnPos(center);
+  };
+  
+  const handleNavOut = () => {
+    if (setNavBtnPos) {
+      setNavBtnPos(null); // Clear position if necessary
+    }
+  };
+  
   return (
     <div
       ref={navbar}
