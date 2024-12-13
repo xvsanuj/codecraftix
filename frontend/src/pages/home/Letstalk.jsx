@@ -27,9 +27,9 @@ const Letstalk = () => {
           <div className="overflow-hidden h-fit w-fit px-1 py-1"><span className="neue inline-block">your</span>{" "}</div>
         </div>
         <div className="flex justify-center items-center gap-6">
-          <div className="overflow-hidden h-fit w-fit px-1"><span className="helvetica font-light inline-block">next</span>{" "}</div>
-          <div className="overflow-hidden h-fit w-fit px-1"><span className="helvetica font-light inline-block">idea</span>{" "}</div>
-          <div className="overflow-hidden h-fit w-fit px-3"><span className="helvetica font-light inline-block">?</span></div>
+          <div className="overflow-hidden h-fit w-fit px-1"><span className="helvetica font-light w-fit pr-2 inline-block">next</span>{" "}</div>
+          <div className="overflow-hidden h-fit w-fit px-1"><span className="helvetica font-light w-fit pr-2 inline-block">idea</span>{" "}</div>
+          <div className="overflow-hidden h-fit w-fit px-3"><span className="helvetica font-light w-fit pr-2 inline-block">?</span></div>
         </div>
       </div>
       <div className="flex items-center gap-6 pt-6">
