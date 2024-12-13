@@ -11,6 +11,12 @@
   display: none;
 }
 
+
+@font-face {
+  font-family: 'bebas neue';
+  src: url('/font/BebasNeue-Regular.ttf');
+}
+
 .helvetica {
   font-family: Helvetica now display;
 }
@@ -128,6 +134,7 @@
   top: -24px;
   left: -24px;
   display: block;
+  mix-blend-mode: exclusion;
   width: 48px;
   height: 48px;
   transform: scale(.2);

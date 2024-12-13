@@ -1,17 +1,20 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-const Header = ({ lenis }) => {
+const Header = ({ lenis, setNavBtnPos, elemDims, stickyElement }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [isAnimating, setIsAnimating] = useState(false);
   const tl = gsap.timeline();
+  const centerPos = useRef();
   const navbar = useRef();
   const line = useRef();
   const fulloffset = useRef();
   const secondline = useRef();
   const offsetBar = useRef();
+  const center = { x: 0, y: 0 }
+  const lerp = (x, y, a) => x * (1 - a) + y * a;
   let lastScroll = 0;
   useEffect(() => {
     const onScroll = () => {
@@ -158,6 +161,19 @@ const Header = ({ lenis }) => {
     setmenuOpen((prev) => !prev);
     setIsAnimating(false);
   };
+  useEffect(() => {
+    const stickyElemDims = centerPos.current.getBoundingClientRect()
+    center.x = stickyElemDims.left + stickyElemDims.width / 2;
+    center.y = stickyElemDims.top + stickyElemDims.height / 2;
+  }, [center])
+  stickyElement(centerPos.current)
+  const handleNavPos = (e) => {
+    elemDims(centerPos.current.getBoundingClientRect())
+    setNavBtnPos(center)
+  }
+  const handleNavOut = (e) => {
+    setNavBtnPos()
+  }
   return (
     <div
       ref={navbar}
@@ -191,17 +207,18 @@ const Header = ({ lenis }) => {
         </a>
       </div>
       <div className="menuButtons z-50 w-[20%] flex justify-end">
-        <div
-          onClick={handleNavClick}
-          className="relative cursor-pointer h-[35px] w-[35px]">
+        <div ref={centerPos} onClick={handleNavClick} onMouseEnter={handleNavPos} onMouseLeave={handleNavOut} className="px-10 py-10 rounded-full bg-zinc-100 cursor-pointer">
           <div
-            ref={line}
-            className="line absolute left-0 top-[32%] w-full h-[.1vw] bg-black"
-          ></div>
-          <div
-            ref={secondline}
-            className="line absolute left-auto right-0 top-auto bottom-[32%] w-full h-[.1vw] bg-black"
-          ></div>
+            className="relative cursor-pointer h-[35px] w-[35px]">
+            <div
+              ref={line}
+              className="line absolute left-0 top-[32%] w-full h-[.1vw] bg-black"
+            ></div>
+            <div
+              ref={secondline}
+              className="line absolute left-auto right-0 top-auto bottom-[32%] w-full h-[.1vw] bg-black"
+            ></div>
+          </div>
         </div>
       </div>
       <div

@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 
-const Description = ({ cursor, isHovered }) => {
+const Description = ({ setText, setIsHover }) => {
   const video = useRef(null);
 
   useGSAP(() => {
@@ -79,8 +79,8 @@ const Description = ({ cursor, isHovered }) => {
       </h1>
       <div
         ref={video}
-        onMouseMove={() => cursor.setText('Play')}
-        onMouseLeave={() => cursor.removeText()}
+        onMouseMove={() => {setText('Play'); setIsHover(true)}}
+        onMouseLeave={() => {setText(''); setIsHover(false)}}
         className="hover-video h-[70vh] relative w-full rounded-2xl mt-1 overflow-hidden bg-zinc-300"
       >
         <video
