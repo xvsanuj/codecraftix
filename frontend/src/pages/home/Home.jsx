@@ -29,7 +29,9 @@ const Home = ({ lenis }) => {
       mousePosition.x = e.clientX;
       mousePosition.y = e.clientY;
 
-      if (!smoothPosition.x && !smoothPosition.y) {
+      if (!mousePosition.x && !mousePosition.y) {
+        mousePosition.x = e.clientX;
+        mousePosition.y = e.clientY;
         smoothPosition.x = e.clientX;
         smoothPosition.y = e.clientY;
       }
@@ -132,7 +134,6 @@ const Home = ({ lenis }) => {
       duration: 0
     });
   }
-  console.log(centerPos);
   return (
     <div>
       <Header stickyElement={setStickyElement} elemDims={setStickyElemDims} setNavBtnPos={setCenterPos} lenis={lenis} />
