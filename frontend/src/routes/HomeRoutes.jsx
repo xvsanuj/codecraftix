@@ -8,6 +8,7 @@ const HomeRoutes = ({lenis, ScrollTrigger}) => {
     <div>
       <Routes>
         <Route path="/" element={<Home lenis={lenis} ScrollTrigger={ScrollTrigger} />} />
+        <Route path="/sitemap" element={<Home />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
