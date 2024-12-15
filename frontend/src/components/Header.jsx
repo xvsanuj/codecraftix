@@ -1,20 +1,17 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-const Header = ({ lenis, setNavBtnPos, elemDims, stickyElement }) => {
+const Header = ({ lenis, setIsHover }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [isAnimating, setIsAnimating] = useState(false);
   const tl = gsap.timeline();
-  const centerPos = useRef();
   const navbar = useRef();
   const line = useRef();
   const fulloffset = useRef();
   const secondline = useRef();
   const offsetBar = useRef();
-  const center = { x: 0, y: 0 }
-  const lerp = (x, y, a) => x * (1 - a) + y * a;
   let lastScroll = 0;
   useEffect(() => {
     const onScroll = () => {
@@ -161,34 +158,6 @@ const Header = ({ lenis, setNavBtnPos, elemDims, stickyElement }) => {
     setmenuOpen((prev) => !prev);
     setIsAnimating(false);
   };
-  useEffect(() => {
-    const stickyElemDims = centerPos.current.getBoundingClientRect();
-    const center = {
-      x: stickyElemDims.left + stickyElemDims.width / 2,
-      y: stickyElemDims.top + stickyElemDims.height / 2,
-    };
-  
-    // Update sticky element if the callback is provided
-    if (stickyElement) {
-      stickyElement(center);
-    }
-  }, [stickyElement]);
-  
-  const handleNavPos = (e) => {
-    if (elemDims) {
-      elemDims(centerPos.current.getBoundingClientRect());
-    }
-  
-    // Use debounced updates to avoid excessive state changes
-    setNavBtnPos && setNavBtnPos(center);
-  };
-  
-  const handleNavOut = () => {
-    if (setNavBtnPos) {
-      setNavBtnPos(null); // Clear position if necessary
-    }
-  };
-  
   return (
     <div
       ref={navbar}
@@ -196,33 +165,26 @@ const Header = ({ lenis, setNavBtnPos, elemDims, stickyElement }) => {
       <div className="brandLogo w-[20%] select-none flex items-center gap-3">
         <a href="/">
           <img
-            className="h-[6vh] w-[6vh] rounded-full"
-            src="https://picsum.photos/480"
+            className="h-[6vh] w-[6vh] drop-shadow-2xl rounded-full"
+            src="./logo.jpg"
             alt=""
           />
         </a>
         <span className="h-6 w-[2px] bg-black rounded-full inline-block"></span>
         <div>
-          <p className="font-semibold leading-none">The Incredible Store</p>
+          <p className="font-semibold leading-none">The Craftix Studio</p>
           <p className="leading-none text-sm">Business faculties</p>
         </div>
       </div>
       <div className="LoginLinks w-[60%] justify-center flex items-center gap-8">
-        <a className="text-sm uppercase font-medium" href="/">
-          Home
-        </a>
-        <a className="text-sm uppercase font-medium" href="/about">
-          About
-        </a>
-        <a className="text-sm uppercase font-medium" href="/services">
-          Services
-        </a>
-        <a className="text-sm uppercase font-medium" href="/contact">
-          Contact
-        </a>
+        {["Home", "About", "Services", "Contact"].map((item, index) => (
+          <a key={index} className="text-sm uppercase font-medium" href={`/${item}`}>
+            {item}
+          </a>
+        ))}
       </div>
       <div className="menuButtons z-50 w-[20%] flex justify-end">
-        <div ref={centerPos} onClick={handleNavClick} onMouseEnter={handleNavPos} onMouseLeave={handleNavOut} className="px-10 py-10 rounded-full bg-zinc-100 cursor-pointer">
+        <div onClick={handleNavClick} className="px-10 py-10 rounded-full cursor-pointer">
           <div
             className="relative cursor-pointer h-[35px] w-[35px]">
             <div

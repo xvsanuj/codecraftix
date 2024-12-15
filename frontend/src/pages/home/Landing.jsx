@@ -3,7 +3,8 @@ import gsap from "gsap";
 import React from "react";
 const Landing = () => {
   useGSAP(()=>{
-    gsap.from(".heading-text span", {
+    gsap
+    .from(".heading-text span", {
       y: 200,
       duration: 1,
       stagger: .1,
@@ -25,7 +26,7 @@ const Landing = () => {
     })
   })
   return (
-    <div className="h-screen relative overflow-hidden">
+    <div className="h-screen bg-white relative overflow-hidden">
       <div className="absolute top-[48%] -translate-y-2/4 left-1/2 -translate-x-2/4">
         <div className="h-fit overflow-hidden">
           <h1 className="heading-text text-[7rem] whitespace-nowrap text-center font-light uppercase leading-none overflow-hidden"><span className="neue inline-block">We</span> <span className="inline-block">don't</span> <span className="inline-block">Make</span> <span className="inline-block">good</span></h1>
