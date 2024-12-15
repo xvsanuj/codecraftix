@@ -25,17 +25,6 @@ const Home = ({ lenis }) => {
   const lerp = (x, y, a) => x * (1 - a) + y * a;
   const skewing = 3;
   useEffect(() => {
-    window.addEventListener("mousemove", (e) => {
-      mousePosition.x = e.clientX;
-      mousePosition.y = e.clientY;
-
-      if (!mousePosition.x && !mousePosition.y) {
-        mousePosition.x = e.clientX;
-        mousePosition.y = e.clientY;
-        smoothPosition.x = e.clientX;
-        smoothPosition.y = e.clientY;
-      }
-    });
     if (centerPos) {
       window.removeEventListener("mousemove", (dets) => { }); //dets are actually stickyElementDets of mousemove
       const xMap = gsap.utils.mapRange(stickyElemDims.left, stickyElemDims.width + stickyElemDims.left, 0, 1, dets.clientX);
