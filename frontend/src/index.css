@@ -287,9 +287,23 @@ body{
   
 }
 
-.cursor.scale-up {
+.cursor.scale-up-1 {
+  height: 100px;
+  width: 100px;
+  mix-blend-mode: normal;
+  background-color: #000;
+  transition: height 0.3s, width 0.3s;
+}
+.cursor.scale-up-2 {
   height: 80px;
   width: 80px;
+  mix-blend-mode: normal;
+  background-color: #000;
+  transition: height 0.3s, width 0.3s;
+}
+.cursor.scale-up-3 {
+  height: 60px;
+  width: 60px;
   mix-blend-mode: normal;
   background-color: #000;
   transition: height 0.3s, width 0.3s;

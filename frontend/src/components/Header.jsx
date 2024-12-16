@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-const Header = ({ lenis, setIsHover, setIsExclusion }) => {
+const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -15,7 +15,7 @@ const Header = ({ lenis, setIsHover, setIsExclusion }) => {
   const offsetBar = useRef();
   let lastScroll = 0;
   useEffect(() => {
-    const hoverLinks = document.querySelectorAll(".hover-links p");
+    const hoverLinks = document.querySelectorAll(".hover-links p, .hover-social p");
   
     hoverLinks.forEach(link => {
       const spans = link.querySelectorAll("span");
@@ -244,31 +244,18 @@ const Header = ({ lenis, setIsHover, setIsExclusion }) => {
             <div className="flex gap-28">
               <div>
                 <h1 className="font-medium text-zinc-500">Social Media</h1>
-                <div className="flex flex-col gap-4 mt-10">
-                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
-                    <span className="text-zinc-500">Instagram</span>
-                    <span className="text-zinc-500">Instagram</span>
-                  </p>
-                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
-                    <span className="text-zinc-500">Facebook</span>
-                    <span className="text-zinc-500">Facebook</span>
-                  </p>
-                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
-                    <span className="text-zinc-500">LinkedIn</span>
-                    <span className="text-zinc-500">LinkedIn</span>
-                  </p>
-                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
-                    <span className="text-zinc-500">Twitter</span>
-                    <span className="text-zinc-500">Twitter</span>
-                  </p>
-                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
-                    <span className="text-zinc-500">Youtube</span>
-                    <span className="text-zinc-500">Youtube</span>
-                  </p>
-                  <p className="flex h-6 overflow-hidden gap-2 flex-col">
-                    <span className="text-zinc-500">Tiktok</span>
-                    <span className="text-zinc-500">Tiktok</span>
-                  </p>
+                <div className="hover-social flex flex-col mt-10">
+                  {["Instagram", "Facebook", "LinkedIn", "Twitter", "Youtube", "Tiktok"].map((item, index) => (
+                    <p 
+                      key={index} 
+                      onMouseEnter={() => setIsSocial(true)}
+                      onMouseLeave={() => setIsSocial(false)}
+                      className="flex h-[5vh] py-2 overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
+                    >
+                      <span className="font-medium">{item}</span>
+                      <span className="font-medium">{item}</span>
+                    </p>
+                  ))}
                 </div>
               </div>
               <div>
@@ -277,8 +264,8 @@ const Header = ({ lenis, setIsHover, setIsExclusion }) => {
                   {["Home", "Projects", "Workflow", "Minority", "Pricing"].map((item, index) => (
                     <p 
                       key={index}
-                      onMouseEnter={() => setIsHover(true)} 
-                      onMouseLeave={() => setIsHover(false)} 
+                      onMouseEnter={() => setIsMenu(true)} 
+                      onMouseLeave={() => setIsMenu(false)} 
                       className="flex h-[8vh] py-2 overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
                     >
                       <span className="text-5xl py-1 inline-block">{item}</span>
@@ -289,7 +276,10 @@ const Header = ({ lenis, setIsHover, setIsExclusion }) => {
               </div>
             </div>
           </div>
-          <div></div>
+          <div className="mt-32 pl-36">
+            <h1 className="font-medium text-zinc-600">Get in touch</h1>
+            <p className="border-[1px] border-zinc-950 my-2 w-fit px-4 font-semibold rounded-full">hello@pixelflow.com</p>
+          </div>
         </div>
       </div>
     </div>
