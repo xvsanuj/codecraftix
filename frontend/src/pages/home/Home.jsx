@@ -13,6 +13,7 @@ import gsap from "gsap";
 const Home = ({ lenis }) => {
   const [text, setText] = useState("");
   const [isHover, setIsHover] = useState(false);
+  const [isExclusion, setIsExclusion] = useState(false);
   const textRef = useRef();
   const cursor = useRef();
   const inner = useRef();
@@ -84,7 +85,7 @@ const Home = ({ lenis }) => {
 
   return (
     <div>
-      <Header setIsHover={setIsHover} lenis={lenis} />
+      <Header setIsExclusion={setIsExclusion} setIsHover={setIsHover} lenis={lenis} />
       <Landing />
       <Description setIsHover={setIsHover} setText={setText}/>
       <About />
@@ -93,8 +94,8 @@ const Home = ({ lenis }) => {
       <Philosophy />
       <Footer />
       <Letstalk />
-      <div ref={cursor} className={`cursor ${isHover ? "scale-up" : ""} rounded-full`}>
-        <div ref={inner} className="cursorInner rounded-full">
+      <div ref={cursor} className={`cursor ${isHover ? "scale-up" : ""} ${isExclusion ? "exclusion" : ""} rounded-full`}>
+        <div ref={inner} className="cursorInner relative rounded-full">
           <div className="cursorText rounded-full flex items-center justify-center h-full w-full">
             <span ref={textRef}>{text}</span>
           </div>

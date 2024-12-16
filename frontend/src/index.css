@@ -261,17 +261,17 @@ body{
   pointer-events: none;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background-color: white;
-  transition: opacity .3s, color .4s;
-  mix-blend-mode: exclusion;
+  background-color: black;
+  transition: opacity .3s;
   transition: height 0.3s, width 0.3s;
 }
 
 .cursorText {
   position: absolute;
   font-weight: 500;
-  top: -18px;
-  left: -18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 36px;
   height: 36px;
   display: flex;
@@ -284,14 +284,19 @@ body{
   line-height: 20px;
   text-align: center;
   z-index: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
 }
 
 .cursor.scale-up {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
+  mix-blend-mode: normal;
+  background-color: #000;
+  transition: height 0.3s, width 0.3s;
+}
+.cursor.exclusion {
+  mix-blend-mode: exclusion !important;
+  background-color: #fff !important;
 }
 
 .cursorInner {

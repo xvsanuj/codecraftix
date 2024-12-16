@@ -1,7 +1,8 @@
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-const Header = ({ lenis, setIsHover }) => {
+const Header = ({ lenis, setIsHover, setIsExclusion }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -13,6 +14,36 @@ const Header = ({ lenis, setIsHover }) => {
   const secondline = useRef();
   const offsetBar = useRef();
   let lastScroll = 0;
+  useEffect(() => {
+    const hoverLinks = document.querySelectorAll(".hover-links p");
+  
+    hoverLinks.forEach(link => {
+      const spans = link.querySelectorAll("span");
+      link.addEventListener("mouseenter", () => {
+        gsap.to(spans, {
+          y: "-115%",
+          duration: 1.5,
+          ease: "elastic",
+        });
+      });
+  
+      link.addEventListener("mouseleave", () => {
+        gsap.to(spans, {
+          y: "0%",
+          duration: 1.5,
+          ease: "elastic",
+        });
+      });
+    });
+  
+    return () => {
+      hoverLinks.forEach(link => {
+        link.removeEventListener("mouseenter", () => {});
+        link.removeEventListener("mouseleave", () => {});
+      });
+    };
+  }, []);
+  
   useEffect(() => {
     const onScroll = () => {
       const currentScroll = lenis.scroll;
@@ -50,12 +81,12 @@ const Header = ({ lenis, setIsHover }) => {
   const handleNavClick = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-
     const newTimeline = gsap.timeline({
       onComplete: () => setIsAnimating(false),
     });
 
     if (!menuOpen) {
+      setIsExclusion(true);
       newTimeline
         .to(
           [line.current, secondline.current],
@@ -94,6 +125,7 @@ const Header = ({ lenis, setIsHover }) => {
           "<"
         );
     } else {
+      setIsExclusion(false);
       newTimeline
         .to(
           [line.current, secondline.current],
@@ -128,6 +160,7 @@ const Header = ({ lenis, setIsHover }) => {
   const handleOutsideClick = () => {
     if (isAnimating) return;
     setIsAnimating(true);
+    setIsExclusion(false);
     tl.to(
       [line.current, secondline.current],
       { rotate: 0, duration: 0.3 },
@@ -240,27 +273,18 @@ const Header = ({ lenis, setIsHover }) => {
               </div>
               <div>
                 <h1 className="font-medium text-zinc-500">Menu</h1>
-                <div className="flex flex-col gap-4 mt-10">
-                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
-                    <span className="text-5xl">Home</span>
-                    <span className="text-5xl">Home</span>
-                  </p>
-                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
-                    <span className="text-5xl">Projects</span>
-                    <span className="text-5xl">Projects</span>
-                  </p>
-                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
-                    <span className="text-5xl">Workflow</span>
-                    <span className="text-5xl">Workflow</span>
-                  </p>
-                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
-                    <span className="text-5xl">Minority</span>
-                    <span className="text-5xl">Minority</span>
-                  </p>
-                  <p className="flex h-14 overflow-hidden gap-2 flex-col">
-                    <span className="text-5xl">Pricing</span>
-                    <span className="text-5xl">Pricing</span>
-                  </p>
+                <div className="hover-links flex flex-col mt-10">
+                  {["Home", "Projects", "Workflow", "Minority", "Pricing"].map((item, index) => (
+                    <p 
+                      key={index}
+                      onMouseEnter={() => setIsHover(true)} 
+                      onMouseLeave={() => setIsHover(false)} 
+                      className="flex h-[8vh] py-2 overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
+                    >
+                      <span className="text-5xl py-1 inline-block">{item}</span>
+                      <span className="text-5xl py-1 inline-block">{item}</span>
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
