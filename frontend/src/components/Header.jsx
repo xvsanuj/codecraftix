@@ -43,7 +43,6 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
       });
     };
   }, []);
-  
   useEffect(() => {
     const onScroll = () => {
       const currentScroll = lenis.scroll;
@@ -105,7 +104,7 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         .to(secondline.current, { y: "-50%", bottom: "50%", duration: 0.3 })
         .to(
           offsetBar.current,
-          { right: 0, ease: "expo.out", duration: 1.5 },
+          { right: "0%", ease: "expo.out", duration: 1.5 },
           "timeSet"
         )
         .to(
@@ -142,7 +141,7 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           { rotate: 0, top: "68%", y: -size.height, duration: 0.3 },
           "<"
         )
-        .to(offsetBar.current, { right: "-50%", duration: 0.5 }, "timeSet")
+        .to(offsetBar.current, { right: "-100%", duration: 1 }, "timeSet")
         .to(
           fulloffset.current,
           {
@@ -194,22 +193,22 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   return (
     <div
       ref={navbar}
-      className="h-[10vh] backdrop-blur-xl flex w-full fixed top-0 left-0 z-50 items-center justify-between px-20">
-      <div className="brandLogo w-[20%] select-none flex items-center gap-3">
+      className="h-[10vh] backdrop-blur-xl flex w-full fixed top-0 left-0 z-50 items-center justify-between px-6 lg:px-20">
+      <div className="brandLogo w-full lg:w-[20%] select-none flex items-center gap-2 lg:gap-3">
         <a href="/">
           <img
             className="h-[6vh] w-[6vh] drop-shadow-2xl rounded-full"
             src="./logo.jpg"
-            alt=""
+            alt="codecraftix"
           />
         </a>
         <span className="h-6 w-[2px] bg-black rounded-full inline-block"></span>
         <div>
-          <p className="font-semibold leading-none">The Craftix Studio</p>
+          <p className="font-semibold leading-none whitespace-nowrap">The Craftix Studio</p>
           <p className="leading-none text-sm">Business faculties</p>
         </div>
       </div>
-      <div className="LoginLinks w-[60%] justify-center flex items-center gap-8">
+      <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
         {["Home", "About", "Services", "Contact"].map((item, index) => (
           <a key={index} className="text-sm uppercase font-medium" href={`/${item}`}>
             {item}
@@ -217,16 +216,16 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         ))}
       </div>
       <div className="menuButtons z-50 w-[20%] flex justify-end">
-        <div onClick={handleNavClick} className="px-10 py-10 rounded-full cursor-pointer">
+        <div onClick={handleNavClick} className="lg:p-10 p-3 rounded-full cursor-pointer">
           <div
             className="relative cursor-pointer h-[35px] w-[35px]">
             <div
               ref={line}
-              className="line absolute left-0 top-[32%] w-full h-[.1vw] bg-black"
+              className="line absolute left-0 top-[32%] w-full lg:h-[.1vw] h-[.6vw] rounded-full bg-black"
             ></div>
             <div
               ref={secondline}
-              className="line absolute left-auto right-0 top-auto bottom-[32%] w-full h-[.1vw] bg-black"
+              className="line absolute left-auto right-0 top-auto bottom-[32%] w-full lg:h-[.1vw] h-[.6vw] rounded-full bg-black"
             ></div>
           </div>
         </div>
@@ -238,11 +237,11 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
       ></div>
       <div
         ref={offsetBar}
-        className="fixed top-0 -right-1/2 w-1/2 h-screen z-40 bg-white">
+        className="fixed top-0 -right-full lg:w-1/2 w-full h-screen z-40 bg-white">
         <div>
           <div className="mt-48 pl-36">
             <div className="flex gap-28">
-              <div>
+              <div className="lg:block hidden">
                 <h1 className="font-medium text-zinc-500">Social Media</h1>
                 <div className="hover-social flex flex-col mt-10">
                   {["Instagram", "Facebook", "LinkedIn", "Twitter", "Youtube", "Tiktok"].map((item, index) => (
