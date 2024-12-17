@@ -103,11 +103,6 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         })
         .to(secondline.current, { y: "-50%", bottom: "50%", duration: 0.3 })
         .to(
-          offsetBar.current,
-          { right: "0%", ease: "expo.out", duration: 1.5 },
-          "timeSet"
-        )
-        .to(
           fulloffset.current,
           {
             display: "block",
@@ -123,6 +118,19 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           },
           "<"
         );
+        if (window.innerWidth < 480) {
+          newTimeline.to(
+            offsetBar.current,
+            { right: "0%", ease: "expo.out", duration: 1 },
+            "timeSet"
+          )
+        }else{
+          newTimeline.to(
+            offsetBar.current,
+            { right: "0%", ease: "expo.out", duration: 1.5 },
+            "timeSet"
+          )
+        }
     } else {
       setIsExclusion(false);
       newTimeline
@@ -141,7 +149,6 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           { rotate: 0, top: "68%", y: -size.height, duration: 0.3 },
           "<"
         )
-        .to(offsetBar.current, { right: "-100%", duration: 1 }, "timeSet")
         .to(
           fulloffset.current,
           {
@@ -153,6 +160,11 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         .set(fulloffset.current, {
           display: "none",
         });
+        if (window.innerWidth < 480) {
+          newTimeline.to(offsetBar.current, { right: "-100%", duration: .5 }, "timeSet")
+        }else{
+          newTimeline.to(offsetBar.current, { right: "-100%", duration: 1 }, "timeSet")
+        }
     }
     setmenuOpen((prev) => !prev);
   };
@@ -239,17 +251,17 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         ref={offsetBar}
         className="fixed top-0 -right-full lg:w-1/2 w-full h-screen z-40 bg-white">
         <div>
-          <div className="mt-48 pl-36">
+          <div className="mt-28 lg:mt-48 pl-16 lg:pl-36">
             <div className="flex gap-28">
               <div className="lg:block hidden">
-                <h1 className="font-medium text-zinc-500">Social Media</h1>
+                <h1 className="font-medium text-zinc-500 select-none">Social Media</h1>
                 <div className="hover-social flex flex-col mt-10">
                   {["Instagram", "Facebook", "LinkedIn", "Twitter", "Youtube", "Tiktok"].map((item, index) => (
                     <p 
                       key={index} 
                       onMouseEnter={() => setIsSocial(true)}
                       onMouseLeave={() => setIsSocial(false)}
-                      className="flex h-[5vh] py-2 overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
+                      className="flex h-[5vh] py-2 select-none overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
                     >
                       <span className="font-medium">{item}</span>
                       <span className="font-medium">{item}</span>
@@ -258,14 +270,14 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
                 </div>
               </div>
               <div>
-                <h1 className="font-medium text-zinc-500">Menu</h1>
-                <div className="hover-links flex flex-col mt-10">
+                <h1 className="font-medium text-zinc-500 select-none">Menu</h1>
+                <div className="hover-links flex flex-col lg:mt-10 mt-5">
                   {["Home", "Projects", "Workflow", "Minority", "Pricing"].map((item, index) => (
                     <p 
                       key={index}
                       onMouseEnter={() => setIsMenu(true)} 
                       onMouseLeave={() => setIsMenu(false)} 
-                      className="flex h-[8vh] py-2 overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
+                      className="flex h-[8vh] py-2 overflow-hidden select-none gap-2 leading-10 cursor-pointer flex-col"
                     >
                       <span className="text-5xl py-1 inline-block">{item}</span>
                       <span className="text-5xl py-1 inline-block">{item}</span>
@@ -275,7 +287,7 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
               </div>
             </div>
           </div>
-          <div className="mt-32 pl-36">
+          <div className="mt-20 lg:mt-32 pl-16 lg:pl-36">
             <h1 className="font-medium text-zinc-600">Get in touch</h1>
             <p className="border-[1px] border-zinc-950 my-2 w-fit px-4 font-semibold rounded-full">hello@pixelflow.com</p>
           </div>

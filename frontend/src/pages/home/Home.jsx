@@ -88,8 +88,8 @@ const Home = ({ lenis }) => {
   return (
     <div>
       <Header setIsExclusion={setIsExclusion} setIsMenu={setIsMenu} setIsSocial={setIsSocial} setIsHover={setIsHover} lenis={lenis} />
-      {/* <Landing />
-      <Description setIsHover={setIsHover} setText={setText}/>
+      <Landing />
+      {/* <Description setIsHover={setIsHover} setText={setText}/>
       <About />
       <Collaboration />
       <Projects setIsHover={setIsHover} setText={setText} />
