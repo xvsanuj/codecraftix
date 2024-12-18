@@ -12,7 +12,7 @@ const Footer = () => {
               <div className='flex items-center absolute gap-6 overflow-hidden top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 h-0 w-full bg-orange-600 text-white'>
                 {[1, 2].map((_, rowIndex) => (
                   <div key={rowIndex} className='footer-div gap-6 flex items-center'>
-                    {Array(20).fill(null).map((_, i) => (
+                    {Array(15).fill(null).map((_, i) => (
                       <h1 key={i} className='text-3xl helvetica'>
                         {platform}
                       </h1>
@@ -24,7 +24,7 @@ const Footer = () => {
           ))}
         </div>
         <div className='lg:px-32 px-0 py-10 flex flex-col gap-10 lg:gap-0 lg:flex-row justify-between items-center'>
-          <h1 className='text-lg font-medium w-96 pl-10'>Main Office - <span className='text-3xl helvetica font-normal'>901 N Pitt Street
+          <h1 className='text-lg font-medium lg:w-96 w-full pl-10 lg:pl-0'>Main Office - <span className='text-3xl helvetica font-normal'>901 N Pitt Street
             Alexandria VA, 22314</span></h1>
           <div className='button-info relative overflow-hidden cursor-pointer border border-black px-14 py-4 rounded-full font-semibold'>
             <h1 className='relative'>info@craftix@gmail.com</h1>

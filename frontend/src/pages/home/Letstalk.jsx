@@ -20,17 +20,17 @@ const Letstalk = () => {
   }, []);
   return (
     <div className="h-screen w-full relative flex items-center justify-center flex-col p-4">
-      <div className="endScreen neue font-light text-6xl md:text-6xl lg:text-9xl italic text-center leading-none">
-        <div className="flex justify-center items-center gap-2 md:gap-4 lg:gap-6 flex-wrap">
-          <div className="flex lg:gap-6">
+      <div className="endScreen neue font-light text-6xl md:text-6xl lg:text-9xl lg:italic text-center leading-none">
+        <div className="flex justify-center items-center lg:gap-2 md:gap-4 lg:gap-6 flex-wrap">
+          <div className="flex lg:flex-row flex-col lg:gap-6">
             <div className="overflow-hidden h-fit w-fit px-1">
-              <span className="neue inline-block">What</span>{" "}
+              <span className="inline-block">What</span>{" "}
             </div>
             <div className="overflow-hidden h-fit w-fit px-1">
-              <span className="neue inline-block">about</span>{" "}
+              <span className="inline-block">about</span>{" "}
             </div>
           </div>
-          <div className="overflow-hidden text-8xl lg:text-9xl md:text-6xl h-fit w-fit px-1 py-1">
+          <div className="overflow-hidden text-8xl lg:text-9xl md:text-6xl h-fit w-fit px-1 lg:py-1">
             <span className="neue leading-none inline-block">your</span>{" "}
           </div>
         </div>

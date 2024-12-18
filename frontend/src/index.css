@@ -209,6 +209,13 @@ body{
 .button-info:hover::after {
   top: 0;
 }
+.button-info:hover {
+  scale: 1.06;
+  transition: all 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.button-info{
+  transition: all 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+}
 
 .button-info h1 {
   z-index: 20;

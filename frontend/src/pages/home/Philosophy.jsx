@@ -48,7 +48,7 @@ const Philosophy = () => {
   return (
     <div className="phil h-screen w-full relative px-6 lg:px-20 pt-12">
       <div className="relative top-6 overflow-hidden">
-        <h1 className="phil-span text-xl leading-none flex gap-2 pl-1">
+        <h1 className="phil-span text-lg leading-none flex gap-2 pl-1">
           <span className="bebas tracking-widest inline-block font-semibold">
             let's
           </span>
@@ -63,7 +63,7 @@ const Philosophy = () => {
           </span>
         </h1>
       </div>
-      <h1 className="lg:text-8xl text-6xl font-bold leading-none uppercase flex items-center gap-4">
+      <h1 className="lg:text-8xl text-5xl font-bold leading-none uppercase flex items-center gap-4">
         <div className="phil-pin h-fit flex pt-6 lg:pt-0 overflow-hidden">
           <span className="inline-block">p</span>
           <span className="inline-block">h</span>
