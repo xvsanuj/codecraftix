@@ -288,8 +288,8 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
             </div>
           </div>
           <div className="mt-20 lg:mt-32 pl-16 lg:pl-36">
-            <h1 className="font-medium text-zinc-600">Get in touch</h1>
-            <p className="border-[1px] border-zinc-950 my-2 w-fit px-4 font-semibold rounded-full">hello@pixelflow.com</p>
+            <h1 className="font-medium text-zinc-600 select-none cursor-pointer">Get in touch</h1>
+            <p className="border-[1px] border-zinc-950 select-none cursor-pointer my-2 w-fit px-4 font-semibold rounded-full">hello@pixelflow.com</p>
           </div>
         </div>
       </div>

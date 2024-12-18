@@ -89,13 +89,13 @@ const Home = ({ lenis }) => {
     <div>
       <Header setIsExclusion={setIsExclusion} setIsMenu={setIsMenu} setIsSocial={setIsSocial} setIsHover={setIsHover} lenis={lenis} />
       <Landing />
-      {/* <Description setIsHover={setIsHover} setText={setText}/>
+      <Description setIsHover={setIsHover} setText={setText}/>
       <About />
       <Collaboration />
       <Projects setIsHover={setIsHover} setText={setText} />
       <Philosophy />
       <Footer />
-      <Letstalk /> */}
+      <Letstalk />
       <div ref={cursor} className={`cursor ${isHover ? "scale-up-1" : ""} ${isMenu ? "scale-up-2" : ""} ${isSocial ? "scale-up-3" : ""} ${isExclusion ? "exclusion" : ""} rounded-full hidden lg:block`}>
         <div ref={inner} className="cursorInner relative rounded-full">
           <div className="cursorText rounded-full flex items-center justify-center h-full w-full">
