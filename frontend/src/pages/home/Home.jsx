@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../components/Navbar";
 import Landing from "./Landing";
 import Description from "./Description";
 import About from "./About";

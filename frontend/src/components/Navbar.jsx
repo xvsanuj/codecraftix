@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
+const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -219,7 +219,7 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     { name: "About us", path: "/about-us" }
   ];
   return (
-    <div
+    <header
       ref={navbar}
       className="h-[10vh] backdrop-blur-xl flex w-full fixed top-0 left-0 z-50 items-center justify-between px-6 lg:px-20">
       <div className="brandLogo w-full lg:w-[20%] select-none flex items-center gap-2 lg:gap-3">
@@ -320,8 +320,8 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
-export default Header;
+export default Navbar;
