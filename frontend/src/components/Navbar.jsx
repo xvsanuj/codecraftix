@@ -233,7 +233,7 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         <span className="h-6 w-[2px] bg-black rounded-full inline-block"></span>
         <div>
           <p className="font-semibold leading-none whitespace-nowrap">The Craftix Studio</p>
-          <p className="leading-none text-sm">Business faculties</p>
+          <p className="leading-none text-sm">Coding Monster's</p>
         </div>
       </div>
       <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
