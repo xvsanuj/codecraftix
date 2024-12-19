@@ -211,6 +211,13 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     { name: "Youtube", link: "https://youtube.com/@yourusername" },
     { name: "Tiktok", link: "https://tiktok.com/@yourusername" }
   ];
+  const menuItems = [
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/projects" },
+    { name: "Workflow", path: "/workflow" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "About us", path: "/about-us" }
+  ];
   return (
     <div
       ref={navbar}
@@ -291,13 +298,7 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
               <div>
                 <h1 className="font-medium text-zinc-500 select-none">Menu</h1>
                 <div className="hover-links flex flex-col lg:mt-10 mt-5">
-                  {[
-                    { name: "Home", path: "/" },
-                    { name: "Projects", path: "/projects" },
-                    { name: "Workflow", path: "/workflow" },
-                    { name: "Minority", path: "/minority" },
-                    { name: "Pricing", path: "/pricing" }
-                  ].map((item, index) => (
+                  {menuItems.map((item, index) => (
                     <Link
                       to={item.path}
                       key={index}
