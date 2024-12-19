@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   useGSAP(() => {
@@ -135,12 +136,12 @@ const About = () => {
               </span>
             </div>
           </h1>
-          <button className="big-btn block ml-3 lg:w-[35vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 border-black mt-10">
+          <Link to="/projects" className="big-btn flex items-center justify-center ml-3 lg:w-[35vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 border-black mt-10">
             <div className="big-btn-div flex flex-col h-10 overflow-hidden">
               <span className="inline-block py-1 lg:p-0">What we do</span>
               <span className="inline-block py-1 lg:p-0">What we do</span>
             </div>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

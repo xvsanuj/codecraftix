@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -15,8 +16,8 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   const offsetBar = useRef();
   let lastScroll = 0;
   useEffect(() => {
-    const hoverLinks = document.querySelectorAll(".hover-links p, .hover-social p");
-  
+    const hoverLinks = document.querySelectorAll(".linksItem, .hover-social a");
+
     hoverLinks.forEach(link => {
       const spans = link.querySelectorAll("span");
       link.addEventListener("mouseenter", () => {
@@ -26,7 +27,7 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           ease: "elastic",
         });
       });
-  
+
       link.addEventListener("mouseleave", () => {
         gsap.to(spans, {
           y: "0%",
@@ -35,11 +36,11 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         });
       });
     });
-  
+
     return () => {
       hoverLinks.forEach(link => {
-        link.removeEventListener("mouseenter", () => {});
-        link.removeEventListener("mouseleave", () => {});
+        link.removeEventListener("mouseenter", () => { });
+        link.removeEventListener("mouseleave", () => { });
       });
     };
   }, []);
@@ -118,19 +119,19 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           },
           "<"
         );
-        if (window.innerWidth < 480) {
-          newTimeline.to(
-            offsetBar.current,
-            { right: "0%", ease: "expo.out", duration: 1 },
-            "timeSet"
-          )
-        }else{
-          newTimeline.to(
-            offsetBar.current,
-            { right: "0%", ease: "expo.out", duration: 1.5 },
-            "timeSet"
-          )
-        }
+      if (window.innerWidth < 480) {
+        newTimeline.to(
+          offsetBar.current,
+          { right: "0%", ease: "expo.out", duration: 1 },
+          "timeSet"
+        )
+      } else {
+        newTimeline.to(
+          offsetBar.current,
+          { right: "0%", ease: "expo.out", duration: 1.5 },
+          "timeSet"
+        )
+      }
     } else {
       setIsExclusion(false);
       newTimeline
@@ -160,11 +161,11 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         .set(fulloffset.current, {
           display: "none",
         });
-        if (window.innerWidth < 480) {
-          newTimeline.to(offsetBar.current, { right: "-100%", duration: .5 }, "timeSet")
-        }else{
-          newTimeline.to(offsetBar.current, { right: "-100%", duration: 1 }, "timeSet")
-        }
+      if (window.innerWidth < 480) {
+        newTimeline.to(offsetBar.current, { right: "-100%", duration: .5 }, "timeSet")
+      } else {
+        newTimeline.to(offsetBar.current, { right: "-100%", duration: 1 }, "timeSet")
+      }
     }
     setmenuOpen((prev) => !prev);
   };
@@ -202,6 +203,14 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     setmenuOpen((prev) => !prev);
     setIsAnimating(false);
   };
+  const socialMedia = [
+    { name: "Instagram", link: "https://instagram.com/yourusername" },
+    { name: "Facebook", link: "https://facebook.com/yourusername" },
+    { name: "LinkedIn", link: "https://linkedin.com/in/yourusername" },
+    { name: "Twitter", link: "https://twitter.com/yourusername" },
+    { name: "Youtube", link: "https://youtube.com/@yourusername" },
+    { name: "Tiktok", link: "https://tiktok.com/@yourusername" }
+  ];
   return (
     <div
       ref={navbar}
@@ -221,8 +230,15 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         </div>
       </div>
       <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
-        {["Home", "About", "Services", "Contact"].map((item, index) => (
-          <a key={index} className="text-sm uppercase font-medium" href={`/${item}`}>
+        {["Home", "Projects", "Workflow", "Pricing"].map((item, index) => (
+          <a
+            key={index}
+            className={`text-lg font-medium relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-black after:left-0 after:bottom-0 after:origin-left ${window.location.pathname === (item.toLowerCase() === 'home' ? '/' : `/${item.toLowerCase()}`)
+              ? 'after:scale-x-100'
+              : 'after:scale-x-0 hover:after:scale-x-100'
+              } after:transition-transform after:duration-300`}
+            href={item.toLowerCase() === 'home' ? '/' : `/${item.toLowerCase()}`}
+          >
             {item}
           </a>
         ))}
@@ -256,32 +272,42 @@ const Header = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
               <div className="lg:block hidden">
                 <h1 className="font-medium text-zinc-500 select-none">Social Media</h1>
                 <div className="hover-social flex flex-col mt-10">
-                  {["Instagram", "Facebook", "LinkedIn", "Twitter", "Youtube", "Tiktok"].map((item, index) => (
-                    <p 
-                      key={index} 
+                  {socialMedia.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onMouseEnter={() => setIsSocial(true)}
                       onMouseLeave={() => setIsSocial(false)}
                       className="flex h-[5vh] py-2 select-none overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
                     >
-                      <span className="font-medium">{item}</span>
-                      <span className="font-medium">{item}</span>
-                    </p>
+                      <span className="font-medium">{item.name}</span>
+                      <span className="font-medium">{item.name}</span>
+                    </a>
                   ))}
                 </div>
               </div>
               <div>
                 <h1 className="font-medium text-zinc-500 select-none">Menu</h1>
                 <div className="hover-links flex flex-col lg:mt-10 mt-5">
-                  {["Home", "Projects", "Workflow", "Minority", "Pricing"].map((item, index) => (
-                    <p 
+                  {[
+                    { name: "Home", path: "/" },
+                    { name: "Projects", path: "/projects" },
+                    { name: "Workflow", path: "/workflow" },
+                    { name: "Minority", path: "/minority" },
+                    { name: "Pricing", path: "/pricing" }
+                  ].map((item, index) => (
+                    <Link
+                      to={item.path}
                       key={index}
-                      onMouseEnter={() => setIsMenu(true)} 
-                      onMouseLeave={() => setIsMenu(false)} 
-                      className="flex h-[8vh] py-2 overflow-hidden select-none gap-2 leading-10 cursor-pointer flex-col"
+                      onMouseEnter={() => setIsMenu(true)}
+                      onMouseLeave={() => setIsMenu(false)}
+                      className="linksItem flex h-[8vh] py-2 overflow-hidden select-none gap-2 leading-10 cursor-pointer flex-col"
                     >
-                      <span className="text-5xl py-1 inline-block">{item}</span>
-                      <span className="text-5xl py-1 inline-block">{item}</span>
-                    </p>
+                      <span className="text-5xl py-1 inline-block">{item.name}</span>
+                      <span className="text-5xl py-1 inline-block">{item.name}</span>
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React from "react";
 import { ScrollTrigger } from "gsap/all";
+import { Link } from "react-router-dom";
 
 const Letstalk = () => {
   useGSAP(() => {
@@ -47,12 +48,12 @@ const Letstalk = () => {
         </div>
       </div>
       <div className="flex items-center gap-4 md:gap-6 pt-6 flex-wrap justify-center">
-        <button className="px-6 md:px-8 py-2 md:py-3 bg-zinc-900 rounded-full text-white font-medium text-sm md:text-base">
-          Mail me
-        </button>
-        <button className="px-6 md:px-8 py-2 md:py-3 bg-orange-400 rounded-full text-white font-medium text-sm md:text-base">
-          Whatsapp
-        </button>
+        <Link to="/contact" className="big-btn ml-3 lg:w-[20vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 flex items-center justify-center border-black mt-10">
+          <div className="big-btn-div flex flex-col h-10 overflow-hidden">
+            <span className="inline-block py-1 helvetica lg:p-0">TELL US</span>
+            <span className="inline-block py-1 helvetica lg:p-0">TELL US</span>
+          </div>
+        </Link>
       </div>
     </div>
   );

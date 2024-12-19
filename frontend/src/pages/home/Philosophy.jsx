@@ -95,7 +95,7 @@ const Philosophy = () => {
         <div className="h-full phil-para lg:w-1/2 w-full lg:py-10 flex items-start flex-col justify-center">
           <h1 className="lg:text-4xl hidden lg:block text-5xl helvetica font-light lg:w-[80%] w-full">
             <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">In our team, developers work alongside </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">designers, strategists and analysts. Cuberto </span></div>
+            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">designers, strategists and analysts. Craftix </span></div>
             <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">doesn't do cookie-cutter solutions and we build </span></div>
             <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">products exactly as they were during the design </span></div>
             <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">phase, no short cuts or simplifications. </span></div>
