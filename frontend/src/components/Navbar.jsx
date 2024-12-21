@@ -1,9 +1,9 @@
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
+  const location = useLocation();
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -237,17 +237,18 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         </div>
       </div>
       <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
-        {["Home", "Projects", "Workflow", "Pricing"].map((item, index) => (
-          <a
+
+        {menuItems.slice(0, -1).map((item, index) => (
+          <Link
             key={index}
-            className={`text-lg font-medium relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-black after:left-0 after:bottom-0 after:origin-left ${window.location.pathname === (item.toLowerCase() === 'home' ? '/' : `/${item.toLowerCase()}`)
+            className={`text-lg font-medium relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-black after:left-0 after:bottom-0 after:origin-left ${location.pathname === item.path
               ? 'after:scale-x-100'
               : 'after:scale-x-0 hover:after:scale-x-100'
               } after:transition-transform after:duration-300`}
-            href={item.toLowerCase() === 'home' ? '/' : `/${item.toLowerCase()}`}
+            to={item.path}
           >
-            {item}
-          </a>
+            {item.name}
+          </Link>
         ))}
       </div>
       <div className="menuButtons z-50 w-[20%] flex justify-end">
