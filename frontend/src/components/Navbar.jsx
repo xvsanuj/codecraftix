@@ -221,21 +221,67 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     { name: "About us", path: "/about-us" }
   ];
   const handleLink = async (path) => {
+  
+    // Page transition animation
     await gsap.to(transitionPage.current, {
       top: 0,
       duration: 1,
-      ease: "expo",
+      ease: "expo.inOut",
     });
+
+    if (menuOpen) {  // Only run closing animation if menu is open
+      setIsExclusion(false);
+      const closeMenu = gsap.timeline({
+        onComplete: () => setIsAnimating(false)
+      });
+      
+      closeMenu
+        .set(
+          [line.current, secondline.current],
+          { rotate: 0,  },
+          "timeSet"
+        )
+        .set([line.current, secondline.current], {
+          y: 0,
+          top: "32%",
+        })
+        .set(
+          secondline.current,
+          { rotate: 0, top: "68%", y: -size.height,  },
+          "<"
+        )
+        .set(
+          fulloffset.current,
+          {
+            opacity: 0,
+            
+          },
+          "timeSet"
+        )
+        .set(fulloffset.current, {
+          display: "none",
+        });
+  
+      if (window.innerWidth < 480) {
+        closeMenu.set(offsetBar.current, { right: "-100%" }, "timeSet");
+      } else {
+        closeMenu.set(offsetBar.current, { right: "-100%" }, "timeSet");
+      }
+      
+      setmenuOpen(false);
+    }
+    
     navigate(path);
+    
     await gsap.to(transitionPage.current, {
       top: "-100%",
       duration: 1,
-      ease: "expo",
+      ease: "expo.inOut",
       onComplete: () => {
         gsap.set(transitionPage.current, { top: "100%" });
       },
     });
-  };  
+  };
   return (
     <div>
       <header
@@ -341,7 +387,7 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           </div>
         </div>
       </header>
-      <div ref={transitionPage} className="h-screen w-full bg-zinc-400 fixed top-full left-0 z-[100]"></div>
+      <div ref={transitionPage} className="h-screen w-full bg-orange-600 fixed top-full left-0 z-[100]"></div>
     </div>
   );
 };
