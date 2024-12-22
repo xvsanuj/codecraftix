@@ -7,6 +7,7 @@ const Landing = () => {
     .from(".heading-text span", {
       y: 200,
       duration: 1,
+      delay: .5,
       stagger: .1,
       ease: "expo"
     })
@@ -14,14 +15,14 @@ const Landing = () => {
       y: 200,
       duration: 1,
       stagger: .1,
-      delay: .3,
+      delay: .5,
       ease: "expo"
     })
     gsap.from(".big-text span", {
       y: 700,
       duration: 1,
+      delay: .5,
       stagger: .1,
-      delay: .3,
       ease: "expo"
     })
   })

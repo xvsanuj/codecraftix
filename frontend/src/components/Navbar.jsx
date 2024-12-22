@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   const location = useLocation();
@@ -8,12 +8,14 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
   const [menuOpen, setmenuOpen] = useState(false);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
   const tl = gsap.timeline();
   const navbar = useRef();
   const line = useRef();
   const fulloffset = useRef();
   const secondline = useRef();
   const offsetBar = useRef();
+  const transitionPage = useRef();
   let lastScroll = 0;
   useEffect(() => {
     const hoverLinks = document.querySelectorAll(".linksItem, .hover-social a");
@@ -218,110 +220,129 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     { name: "Pricing", path: "/pricing" },
     { name: "About us", path: "/about-us" }
   ];
+  const handleLink = async (path) => {
+    await gsap.to(transitionPage.current, {
+      top: 0,
+      duration: 1,
+      ease: "expo",
+    });
+    navigate(path);
+    await gsap.to(transitionPage.current, {
+      top: "-100%",
+      duration: 1,
+      ease: "expo",
+      onComplete: () => {
+        gsap.set(transitionPage.current, { top: "100%" });
+      },
+    });
+  };  
   return (
-    <header
-      ref={navbar}
-      className="h-[10vh] backdrop-blur-xl flex w-full fixed top-0 left-0 z-50 items-center justify-between px-6 lg:px-20">
-      <div className="brandLogo w-full lg:w-[20%] select-none flex items-center gap-2 lg:gap-3">
-        <a href="/">
-          <img
-            className="h-[6vh] w-[6vh] drop-shadow-2xl rounded-full"
-            src="./logo.jpg"
-            alt="codecraftix"
-          />
-        </a>
-        <span className="h-6 w-[2px] bg-black rounded-full inline-block"></span>
-        <div>
-          <p className="font-semibold leading-none whitespace-nowrap">The Craftix Studio</p>
-          <p className="leading-none text-sm">Coding Monster's</p>
-        </div>
-      </div>
-      <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
-
-        {menuItems.slice(0, -1).map((item, index) => (
-          <Link
-            key={index}
-            className={`text-lg font-medium relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-black after:left-0 after:bottom-0 after:origin-left ${location.pathname === item.path
-              ? 'after:scale-x-100'
-              : 'after:scale-x-0 hover:after:scale-x-100'
-              } after:transition-transform after:duration-300`}
-            to={item.path}
-          >
-            {item.name}
-          </Link>
-        ))}
-      </div>
-      <div className="menuButtons z-50 w-[20%] flex justify-end">
-        <div onClick={handleNavClick} className="lg:p-10 p-3 rounded-full cursor-pointer">
-          <div
-            className="relative cursor-pointer h-[35px] w-[35px]">
-            <div
-              ref={line}
-              className="line absolute left-0 top-[32%] w-full lg:h-[.1vw] h-[.6vw] rounded-full bg-black"
-            ></div>
-            <div
-              ref={secondline}
-              className="line absolute left-auto right-0 top-auto bottom-[32%] w-full lg:h-[.1vw] h-[.6vw] rounded-full bg-black"
-            ></div>
+    <div>
+      <header
+        ref={navbar}
+        className="h-[10vh] backdrop-blur-xl flex w-full fixed top-0 left-0 z-50 items-center justify-between px-6 lg:px-20">
+        <div className="brandLogo w-full lg:w-[20%] select-none flex items-center gap-2 lg:gap-3">
+          <a href="/">
+            <img
+              className="h-[6vh] w-[6vh] drop-shadow-2xl rounded-full"
+              src="./logo.jpg"
+              alt="codecraftix"
+            />
+          </a>
+          <span className="h-6 w-[2px] bg-black rounded-full inline-block"></span>
+          <div>
+            <p className="font-semibold leading-none whitespace-nowrap">The Craftix Studio</p>
+            <p className="leading-none text-sm">Coding Monster's</p>
           </div>
         </div>
-      </div>
-      <div
-        ref={fulloffset}
-        onClick={handleOutsideClick}
-        className="fixed h-screen top-0 left-0 bg-black hidden z-30 w-full"
-      ></div>
-      <div
-        ref={offsetBar}
-        className="fixed top-0 -right-full lg:w-1/2 w-full h-screen z-40 bg-white">
-        <div>
-          <div className="mt-28 lg:mt-48 pl-16 lg:pl-36">
-            <div className="flex gap-28">
-              <div className="lg:block hidden">
-                <h1 className="font-medium text-zinc-500 select-none">Social Media</h1>
-                <div className="hover-social flex flex-col mt-10">
-                  {socialMedia.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onMouseEnter={() => setIsSocial(true)}
-                      onMouseLeave={() => setIsSocial(false)}
-                      className="flex h-[5vh] py-2 select-none overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
-                    >
-                      <span className="font-medium">{item.name}</span>
-                      <span className="font-medium">{item.name}</span>
-                    </a>
-                  ))}
+        <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
+
+          {menuItems.slice(0, -1).map((item, index) => (
+            <Link
+              key={index}
+              className={`text-lg font-medium relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-black after:left-0 after:bottom-0 after:origin-left ${location.pathname === item.path
+                ? 'after:scale-x-100'
+                : 'after:scale-x-0 hover:after:scale-x-100'
+                } after:transition-transform after:duration-300`}
+              onClick={() => handleLink(item.path)}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+        <div className="menuButtons z-50 w-[20%] flex justify-end">
+          <div onClick={handleNavClick} className="lg:p-10 p-3 rounded-full cursor-pointer">
+            <div
+              className="relative cursor-pointer h-[35px] w-[35px]">
+              <div
+                ref={line}
+                className="line absolute left-0 top-[32%] w-full lg:h-[.1vw] h-[.6vw] rounded-full bg-black"
+              ></div>
+              <div
+                ref={secondline}
+                className="line absolute left-auto right-0 top-auto bottom-[32%] w-full lg:h-[.1vw] h-[.6vw] rounded-full bg-black"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div
+          ref={fulloffset}
+          onClick={handleOutsideClick}
+          className="fixed h-screen top-0 left-0 bg-black hidden z-30 w-full"
+        ></div>
+        <div
+          ref={offsetBar}
+          className="fixed top-0 -right-full lg:w-1/2 w-full h-screen z-40 bg-white">
+          <div>
+            <div className="mt-28 lg:mt-48 pl-16 lg:pl-36">
+              <div className="flex gap-28">
+                <div className="lg:block hidden">
+                  <h1 className="font-medium text-zinc-500 select-none">Social Media</h1>
+                  <div className="hover-social flex flex-col mt-10">
+                    {socialMedia.map((item, index) => (
+                      <a
+                        key={index}
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onMouseEnter={() => setIsSocial(true)}
+                        onMouseLeave={() => setIsSocial(false)}
+                        className="flex h-[5vh] py-2 select-none overflow-hidden gap-2 leading-10 cursor-pointer flex-col"
+                      >
+                        <span className="font-medium">{item.name}</span>
+                        <span className="font-medium">{item.name}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <h1 className="font-medium text-zinc-500 select-none">Menu</h1>
-                <div className="hover-links flex flex-col lg:mt-10 mt-5">
-                  {menuItems.map((item, index) => (
-                    <Link
-                      to={item.path}
-                      key={index}
-                      onMouseEnter={() => setIsMenu(true)}
-                      onMouseLeave={() => setIsMenu(false)}
-                      className="linksItem flex h-[8vh] py-2 overflow-hidden select-none gap-2 leading-10 cursor-pointer flex-col"
-                    >
-                      <span className="text-5xl py-1 inline-block">{item.name}</span>
-                      <span className="text-5xl py-1 inline-block">{item.name}</span>
-                    </Link>
-                  ))}
+                <div>
+                  <h1 className="font-medium text-zinc-500 select-none">Menu</h1>
+                  <div className="hover-links flex flex-col lg:mt-10 mt-5">
+                    {menuItems.map((item, index) => (
+                      <Link
+                        onClick={() => handleLink(item.path)}
+                        key={index}
+                        onMouseEnter={() => setIsMenu(true)}
+                        onMouseLeave={() => setIsMenu(false)}
+                        className="linksItem flex h-[8vh] py-2 overflow-hidden select-none gap-2 leading-10 cursor-pointer flex-col"
+                      >
+                        <span className="text-5xl py-1 inline-block">{item.name}</span>
+                        <span className="text-5xl py-1 inline-block">{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-20 lg:mt-32 pl-16 lg:pl-36">
-            <h1 className="font-medium text-zinc-600 select-none cursor-pointer">Get in touch</h1>
-            <p className="border-[1px] border-zinc-950 select-none cursor-pointer my-2 w-fit px-4 font-semibold rounded-full">hello@pixelflow.com</p>
+            <div className="mt-20 lg:mt-32 pl-16 lg:pl-36">
+              <h1 className="font-medium text-zinc-600 select-none cursor-pointer">Get in touch</h1>
+              <p className="border-[1px] border-zinc-950 select-none cursor-pointer my-2 w-fit px-4 font-semibold rounded-full">hello@pixelflow.com</p>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <div ref={transitionPage} className="h-screen w-full bg-zinc-400 fixed top-full left-0 z-[100]"></div>
+    </div>
   );
 };
 
