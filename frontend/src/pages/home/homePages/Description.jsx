@@ -104,7 +104,7 @@ const Description = ({ setText, setIsHover }) => {
           muted
           src="https://cuberto.com/assets/showreel/short.mp4"
         ></video>
-        <i ref={playIcon} className="ri-play-fill lg:hidden block bg-black rounded-full text-white text-2xl flex items-center justify-center h-20 w-20 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></i>
+        <i ref={playIcon} className="ri-play-fill lg:hidden bg-black rounded-full text-white text-2xl flex items-center justify-center h-20 w-20 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></i>
       </div>
     </div>
   );
