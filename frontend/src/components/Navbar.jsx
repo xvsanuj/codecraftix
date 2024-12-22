@@ -274,11 +274,11 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     navigate(path);
     
     await gsap.to(transitionPage.current, {
-      top: "-100%",
+      top: "-100vh",
       duration: 1,
       ease: "expo.inOut",
       onComplete: () => {
-        gsap.set(transitionPage.current, { top: "100%" });
+        gsap.set(transitionPage.current, { top: "100vh" });
       },
     });
   };
@@ -387,7 +387,7 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
           </div>
         </div>
       </header>
-      <div ref={transitionPage} className="h-screen w-full bg-orange-600 fixed top-full left-0 z-[100]"></div>
+      <div ref={transitionPage} className="h-screen w-full bg-orange-600 fixed top-[100vh] left-0 z-[100]"></div>
     </div>
   );
 };
