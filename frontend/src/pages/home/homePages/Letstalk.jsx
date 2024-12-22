@@ -22,7 +22,7 @@ const Letstalk = () => {
   return (
     <div className="h-screen w-full relative flex items-center justify-center flex-col p-4">
       <div className="endScreen neue font-light text-6xl md:text-6xl lg:text-9xl lg:italic text-center leading-none">
-        <div className="flex justify-center items-center lg:gap-2 md:gap-4 lg:gap-6 flex-wrap">
+        <div className="flex justify-center flex-col items-center md:gap-4 lg:gap-6 flex-wrap">
           <div className="flex lg:flex-row flex-col lg:gap-6">
             <div className="overflow-hidden h-fit w-fit px-1">
               <span className="inline-block">What</span>{" "}

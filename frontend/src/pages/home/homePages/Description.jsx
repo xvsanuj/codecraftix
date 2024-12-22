@@ -2,10 +2,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
+import 'remixicon/fonts/remixicon.css'
 
 const Description = ({ setText, setIsHover }) => {
   const video = useRef(null);
-
+  const playIcon = useRef(null);
+  const playVideo = useRef(null);
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(".text-span span", {
@@ -81,17 +83,28 @@ const Description = ({ setText, setIsHover }) => {
       </h1>
       <div
         ref={video}
-        onMouseMove={() => {setText('Play'); setIsHover(true)}}
+        onClick={()=>{
+          if(playVideo.current.paused){
+            playVideo.current.play()
+            playIcon.current.classList.add('hidden')
+          }else{
+            playVideo.current.pause()
+            playIcon.current.classList.remove('hidden')
+          }
+        }}
+        onMouseEnter={() => {setText('Play'); setIsHover(true)}}
         onMouseLeave={() => {setText(''); setIsHover(false)}}
-        className="hover-video h-[70vh] relative w-full rounded-2xl mt-8 lg:mt-1 overflow-hidden bg-zinc-300"
+        className="hover-video h-[70vh] cursor-pointer relative w-full rounded-2xl mt-8 lg:mt-1 overflow-hidden bg-zinc-300"
       >
         <video
+          ref={playVideo}
           className="h-full scale-110 w-full object-cover absolute object-center"
           autoPlay={false}
           loop
           muted
           src="https://cuberto.com/assets/showreel/short.mp4"
         ></video>
+        <i ref={playIcon} className="ri-play-fill lg:hidden block bg-black rounded-full text-white text-2xl flex items-center justify-center h-20 w-20 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></i>
       </div>
     </div>
   );

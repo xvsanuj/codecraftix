@@ -153,7 +153,7 @@ const Projects = ({ setIsHover, setText }) => {
       <div className="w-full rounded-2xl mt-20 overflow-hidden flex lg:flex-row flex-col gap-10 lg:gap-36">
         <div className="flex flex-col gap-10 lg:gap-36">
           {projects.map((project, index) => (
-            <Link to={project.link} key={index} className={project.class}>
+            <Link to={project.link} onClick={() => { setIsHover(false); setText("") }} key={index} className={project.class}>
               <div
                 onMouseMove={() => { setText('Show'); setIsHover(true) }}
                 onMouseLeave={() => { setIsHover(false); setText("") }}
@@ -174,7 +174,7 @@ const Projects = ({ setIsHover, setText }) => {
         </div>
         <div className="lg:mt-44 flex flex-col gap-10 lg:gap-36">
           {projects2.map((project, index) => (
-            <Link to={project.link} key={index} className={project.class}>
+            <Link to={project.link} onClick={() => { setIsHover(false); setText("") }} key={index} className={project.class}>
               <div
                 onMouseMove={() => { setText('Show'); setIsHover(true) }}
                 onMouseLeave={() => { setIsHover(false); setText("") }}
