@@ -88,10 +88,9 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
     setIsLoading(true);
     let progressInterval;
     let startTime = Date.now();
-    const MINIMUM_LOADING_TIME = 1000; // 2 seconds minimum loading time
     const handleLoad = () => {
       const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0, MINIMUM_LOADING_TIME - elapsedTime);
+      const remainingTime = Math.max(0,   elapsedTime);
       
       // Delay the completion phase if we haven't reached minimum time
       setTimeout(() => {
