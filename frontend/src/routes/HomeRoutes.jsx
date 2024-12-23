@@ -10,9 +10,13 @@ import About from '../pages/home/pages/About';
 import Pricing from '../pages/home/pages/Pricing';
 import Workflow from '../pages/home/pages/Workflow';
 import Loader from '../components/Loader';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const HomeRoutes = ({ lenis, ScrollTrigger }) => {
   const [progress, setProgress] = useState(0);
+  const location = useLocation();
+  const transitionPage = useRef();
+  const navigate = useNavigate();
   const [isSocial, setIsSocial] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
   const [isExclusion, setIsExclusion] = useState(false);
@@ -26,7 +30,6 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
   const mousePosition = { x: 0, y: 0 };
   const skewing = 3;
 
-  // Cursor logic
   useEffect(() => {
     const lerp = (start, end, factor) => start * (1 - factor) + end * factor;
     const setter = {
@@ -83,16 +86,14 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
     };
   }, []);
 
-  // Loader logic
   useEffect(() => {
     setIsLoading(true);
     let progressInterval;
     let startTime = Date.now();
     const handleLoad = () => {
       const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0,   elapsedTime);
+      const remainingTime = Math.max(0, elapsedTime);
       
-      // Delay the completion phase if we haven't reached minimum time
       setTimeout(() => {
         progressInterval = setInterval(() => {
           setProgress(prev => {
@@ -111,7 +112,6 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
       }, remainingTime);
     };
 
-    // Start progress from 0 to 70% while waiting for load
     const simulateInitialProgress = setInterval(() => {
       setProgress(prev => {
         if (prev >= 70) {
@@ -137,7 +137,6 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
     };
   }, []);
 
-  // Handle hover text animation
   useEffect(() => {
     if (text && isHover) {
       gsap.to(textRef.current, {
@@ -155,6 +154,30 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
       });
     }
   }, [text, isHover]);
+
+  const handleLink = async (path) => {
+    gsap.set(transitionPage.current, { top: '100vh' });
+
+    const tl = gsap.timeline();
+
+    tl.to(transitionPage.current, {
+      top: 0,
+      duration: 1,
+      ease: "expo.inOut",
+    });
+
+    tl.add(() => {
+      navigate(path);
+    });
+
+    tl.to(transitionPage.current, {
+      top: "-100vh",
+      duration: 1,
+      ease: "expo.inOut",
+    });
+
+    tl.set(transitionPage.current, { top: "100vh" });
+  };
 
   return (
     <div>
@@ -174,6 +197,7 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
               path="/"
               element={
                 <Home
+                  handleLink={handleLink}
                   lenis={lenis}
                   setText={setText}
                   setIsHover={setIsHover}
@@ -203,7 +227,9 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
             <span ref={textRef}>{text}</span>
           </div>
         </div>
+        
       </div>
+      <div ref={transitionPage} className="h-screen w-full bg-orange-600 fixed top-[100vh] left-0 z-[100]"></div>
     </div>
   );
 };

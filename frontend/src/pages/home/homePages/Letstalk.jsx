@@ -4,7 +4,7 @@ import React from "react";
 import { ScrollTrigger } from "gsap/all";
 import { Link } from "react-router-dom";
 
-const Letstalk = () => {
+const Letstalk = ({handleLink}) => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(".endScreen span", {
@@ -48,7 +48,7 @@ const Letstalk = () => {
         </div>
       </div>
       <div className="flex items-center gap-4 md:gap-6 pt-6 flex-wrap justify-center">
-        <Link to="/contact" className="big-btn ml-3 lg:w-[20vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 flex items-center justify-center border-black mt-10">
+        <Link onClick={()=>handleLink("/contact")} className="big-btn ml-3 lg:w-[20vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 flex items-center justify-center border-black mt-10">
           <div className="big-btn-div flex flex-col h-10 overflow-hidden">
             <span className="inline-block py-1 helvetica lg:p-0">TELL US</span>
             <span className="inline-block py-1 helvetica lg:p-0">TELL US</span>

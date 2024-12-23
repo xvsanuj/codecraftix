@@ -8,8 +8,9 @@ const Loader = ({progress}) => {
     const incElem = useRef();
     const [width, setWidth] = useState(0);
     useEffect(()=>{
+        console.log(elementDims.current.offsetWidth);
         setWidth(elementDims.current.offsetWidth);
-    },[])
+    },[elementDims])
     useGSAP(() => {
         gsap.to(element.current, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
     }, []);
