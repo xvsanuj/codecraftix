@@ -4,7 +4,11 @@ import { ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
-const About = ({handleLink}) => {
+
+const About = ({ handleLink }) => {
+
+  const isMobile = window.innerWidth < 768;
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(".about-span span", {
@@ -92,57 +96,93 @@ const About = ({handleLink}) => {
             src="https://cuberto.com/assets/home/summary/1.mp4?3"
           ></video>
         </div>
-        <div className="h-full lg:w-1/2 w-full lg:py-10 flex lg:items-start flex-col lg:justify-center">
-          <h1 className="about-para lg:text-5xl text-[5vh] lg:p-0 pt-10 px-5 font-light lg:w-[80%] w-full">
-            <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
-              <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-                <span className="helvetica whitespace-nowrap inline-block">
-                  Craftix is a leading{" "}
-                </span>
+        {isMobile ? (
+          <div className="h-full lg:w-1/2 w-full lg:py-10 flex lg:items-start flex-col lg:justify-center">
+            <h1 className="about-para lg:text-5xl text-[5vh] lg:p-0 pt-10 px-5 font-light lg:w-[100%] w-full">
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica whitespace-nowrap inline-block">
+                    Craftix is a leading{" "}
+                  </span>
+                </div>
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica whitespace-nowrap inline-block">
+                    digital product{" "}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica whitespace-nowrap inline-block">
+                    agency focused on
+                  </span>
+                </div>
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica whitespace-nowrap inline-block">
+                    branding, UI/UX
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica inline-block">
+                    design, mobile, and web
+                  </span>
+                </div>
               </div>
               <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-                <span className="helvetica whitespace-nowrap inline-block">
-                  digital product{" "}
-                </span>
+                <span className="helvetica inline-block">development.</span>
               </div>
-            </div>
-            <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+            </h1>
+            <Link
+              onClick={() => handleLink("/projects")}
+              className="big-btn flex items-center justify-center ml-3 lg:w-[35vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 border-black mt-10"
+            >
+              <div className="big-btn-div flex flex-col h-10 overflow-hidden">
+                <span className="inline-block py-1 lg:p-0">What we do</span>
+                <span className="inline-block py-1 lg:p-0">What we do</span>
+              </div>
+            </Link>
+          </div>
+        ) : (
+          <div className="h-full lg:w-1/2 w-full lg:py-10 flex lg:items-start flex-col lg:justify-center">
+            <h1 className="about-para lg:text-5xl text-[5vh] lg:p-0 pt-10 px-5 font-light lg:w-[100%] w-full">
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica whitespace-nowrap inline-block">
+                    Craftix is a leading digital product{" "}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica whitespace-nowrap inline-block">
+                    agency focused on branding, UI/UX
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="lg:h-14 h-[6.7vh] overflow-hidden">
+                  <span className="helvetica inline-block">
+                    design, mobile, and web
+                  </span>
+                </div>
+              </div>
               <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-                <span className="helvetica whitespace-nowrap inline-block">
-                  agency focused
-                </span>
+                <span className="helvetica inline-block">development.</span>
               </div>
-              <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-                <span className="helvetica whitespace-nowrap inline-block">
-                  on branding, UI/UX
-                </span>
+            </h1>
+            <Link
+              onClick={() => handleLink("/projects")}
+              className="big-btn flex items-center justify-center ml-3 lg:w-[35vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 border-black mt-10"
+            >
+              <div className="big-btn-div flex flex-col h-10 overflow-hidden">
+                <span className="inline-block py-1 lg:p-0">What we do</span>
+                <span className="inline-block py-1 lg:p-0">What we do</span>
               </div>
-            </div>
-            <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
-              <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-                <span className="helvetica inline-block">
-                  design, mobile,
-                </span>
-              </div>
-              <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-                <span className="helvetica inline-block">
-                  and web
-                </span>
-              </div>
-            </div>
-            <div className="lg:h-14 h-[6.7vh] overflow-hidden">
-              <span className="helvetica inline-block">
-                development.
-              </span>
-            </div>
-          </h1>
-          <Link onClick={() => handleLink("/projects")} className="big-btn flex items-center justify-center ml-3 lg:w-[35vw] lg:h-full h-28 mb-3 w-72 rounded-full lg:text-3xl text-2xl border-2 border-black mt-10">
-            <div className="big-btn-div flex flex-col h-10 overflow-hidden">
-              <span className="inline-block py-1 lg:p-0">What we do</span>
-              <span className="inline-block py-1 lg:p-0">What we do</span>
-            </div>
-          </Link>
-        </div>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

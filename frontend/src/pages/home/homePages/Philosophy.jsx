@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/all";
 import React from "react";
 
 const Philosophy = () => {
+  const isMobile = window.innerWidth < 768;
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -93,29 +94,144 @@ const Philosophy = () => {
           ></video>
         </div>
         <div className="h-full phil-para lg:w-1/2 w-full lg:py-10 flex items-start flex-col justify-center">
-          <h1 className="lg:text-4xl hidden lg:block text-5xl helvetica font-light lg:w-[80%] w-full">
-            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">In our team, developers work alongside </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">designers, strategists and analysts. Craftix </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">doesn't do cookie-cutter solutions and we build </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">products exactly as they were during the design </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">phase, no short cuts or simplifications. </span></div>
-          </h1>
-          <h1 className="lg:text-4xl text-5xl helvetica font-light lg:w-[80%] w-full mt-6 lg:mt-0">
-            <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
-              <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">We're driven by </span></div>
-              <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">user‑centered </span></div>
-              <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">design that </span></div>
+          <h1 className="lg:text-4xl hidden lg:block text-5xl helvetica font-light lg:w-[100%] w-full">
+            <div className="h-fit overflow-hidden whitespace-nowrap">
+              <span className="helvetica w-full inline-block">
+                In our team, developers work alongside{" "}
+              </span>
             </div>
-            <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
-              <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">drives productivity </span></div>
-              <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">and increases </span></div>
-              <div className="h-fit overflow-hidden whitespace-nowrap"><span className="helvetica w-full inline-block">revenue. </span></div>
-              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block"><span className="helvetica w-full inline-block"> Our </span></div>
+            <div className="h-fit overflow-hidden whitespace-nowrap">
+              <span className="helvetica w-full inline-block">
+                designers, strategists and analysts. Craftix{" "}
+              </span>
             </div>
-            <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block"><span className="helvetica w-full inline-block">expertise and ingenuity are remarkable, yet we </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block"><span className="helvetica w-full inline-block">always strive to outdo and outperform our </span></div>
-            <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block"><span className="helvetica w-full inline-block">previous achievements. </span></div>
+            <div className="h-fit overflow-hidden whitespace-nowrap">
+              <span className="helvetica w-full inline-block">
+                doesn't do cookie-cutter solutions and we build{" "}
+              </span>
+            </div>
+            <div className="h-fit overflow-hidden whitespace-nowrap">
+              <span className="helvetica w-full inline-block">
+                products exactly as they were during the design{" "}
+              </span>
+            </div>
+            <div className="h-fit overflow-hidden whitespace-nowrap">
+              <span className="helvetica w-full inline-block">
+                phase, no short cuts or simplifications.{" "}
+              </span>
+            </div>
           </h1>
+          {isMobile ? (
+            <h1 className="lg:text-4xl text-5xl helvetica font-light lg:w-[100%] w-full mt-6 lg:mt-0">
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    We're driven by{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    user‑centered{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    design that{" "}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    drives productivity{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    and increases{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    revenue.{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                  <span className="helvetica w-full inline-block"> Our </span>
+                </div>
+              </div>
+              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                <span className="helvetica w-full inline-block">
+                  expertise and ingenuity are remarkable, yet we{" "}
+                </span>
+              </div>
+              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                <span className="helvetica w-full inline-block">
+                  always strive to outdo and outperform our{" "}
+                </span>
+              </div>
+              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                <span className="helvetica w-full inline-block">
+                  previous achievements.{" "}
+                </span>
+              </div>
+            </h1>
+          ) : (
+            <h1 className="lg:text-4xl text-5xl helvetica font-light lg:w-[100%] w-full mt-6 lg:mt-0">
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    We're driven by{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    user‑centered{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    design that{" "}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-0 lg:gap-2 lg:items-center">
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    drives productivity{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    and increases{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap">
+                  <span className="helvetica w-full inline-block">
+                    revenue.{" "}
+                  </span>
+                </div>
+                <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                  <span className="helvetica w-full inline-block"> Our </span>
+                </div>
+              </div>
+              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                <span className="helvetica w-full inline-block">
+                  expertise and ingenuity are remarkable, yet we{" "}
+                </span>
+              </div>
+              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                <span className="helvetica w-full inline-block">
+                  always strive to outdo and outperform our{" "}
+                </span>
+              </div>
+              <div className="h-fit overflow-hidden whitespace-nowrap hidden lg:block">
+                <span className="helvetica w-full inline-block">
+                  previous achievements.{" "}
+                </span>
+              </div>
+            </h1>
+          )}
         </div>
       </div>
     </div>

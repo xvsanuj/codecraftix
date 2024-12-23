@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import Header from "../../../components/Navbar";
+import React from "react";
 import Landing from "../homePages/Landing";
 import Description from "../homePages/Description";
 import About from "../homePages/About";
@@ -8,8 +7,6 @@ import Projects from "../homePages/Projects";
 import Philosophy from "../homePages/Philosophy";
 import Footer from "../homePages/Footer";
 import Letstalk from "../homePages/Letstalk";
-import gsap from "gsap";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const Home = ({ setIsHover, setText, handleLink }) => {
   return (
@@ -22,7 +19,6 @@ const Home = ({ setIsHover, setText, handleLink }) => {
       <Philosophy />
       <Footer />
       <Letstalk handleLink={handleLink} />
-      
     </div>
   );
 };
