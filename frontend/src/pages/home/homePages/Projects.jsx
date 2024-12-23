@@ -155,7 +155,7 @@ const Projects = ({ setIsHover, setText, handleLink }) => {
           {projects.map((project, index) => (
             <Link onClick={() => handleLink(project.link)} onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false); setText("") }} key={index} className={project.class}>
               <div
-                onMouseMove={() => { setText('Show'); setIsHover(true) }}
+                onMouseEnter={() => { setText('Show'); setIsHover(true) }}
                 onMouseLeave={() => { setIsHover(false); setText("") }}
                 className="lg:h-[70vh] h-[50vh] cursor-pointer overflow-hidden rounded-3xl w-full lg:w-[25vw] bg-zinc-600"
               >
@@ -176,7 +176,7 @@ const Projects = ({ setIsHover, setText, handleLink }) => {
           {projects2.map((project, index) => (
             <Link onClick={() => handleLink(project.link)} onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false); setText("") }} key={index} className={project.class}>
               <div
-                onMouseMove={() => { setText('Show'); setIsHover(true) }}
+                onMouseEnter={() => { setText('Show'); setIsHover(true) }}
                 onMouseLeave={() => { setIsHover(false); setText("") }}
                 className="lg:h-[70vh] h-[50vh] cursor-pointer overflow-hidden rounded-3xl lg:w-[25vw] w-full bg-zinc-600"
               >

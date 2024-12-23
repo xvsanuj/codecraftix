@@ -206,19 +206,19 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
     setIsAnimating(false);
   };
   const socialMedia = [
-    { name: "Instagram", link: "https://instagram.com/yourusername" },
-    { name: "Facebook", link: "https://facebook.com/yourusername" },
-    { name: "LinkedIn", link: "https://linkedin.com/in/yourusername" },
-    { name: "Twitter", link: "https://twitter.com/yourusername" },
-    { name: "Youtube", link: "https://youtube.com/@yourusername" },
-    { name: "Tiktok", link: "https://tiktok.com/@yourusername" }
+    { name: "Instagram", link: "https://instagram.com/three.anuj" },
+    { name: "Facebook", link: "https://facebook.com/xvsanuj" },
+    { name: "LinkedIn", link: "https://linkedin.com/in/xvsanuj" },
+    { name: "Twitter", link: "https://twitter.com/xvsanuj" },
+    { name: "Youtube", link: "https://youtube.com/@CodeCraftix" },
+    { name: "Dribbble", link: "https://dribbble.com/xvsanuj" }
   ];
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
-    { name: "Workflow", path: "/workflow" },
     { name: "Pricing", path: "/pricing" },
-    { name: "About us", path: "/about-us" }
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" }
   ];
   const handleLink = async (path) => {
   
@@ -303,7 +303,7 @@ const Navbar = ({ lenis, setIsMenu, setIsExclusion, setIsSocial }) => {
         </div>
         <div className="LoginLinks hidden lg:flex w-[60%] justify-center items-center gap-8">
 
-          {menuItems.slice(0, -1).map((item, index) => (
+          {menuItems.map((item, index) => (
             <Link
               key={index}
               className={`text-lg font-medium relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-black after:left-0 after:bottom-0 after:origin-left ${location.pathname === item.path

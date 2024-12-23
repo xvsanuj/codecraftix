@@ -11,6 +11,7 @@ import Pricing from '../pages/home/pages/Pricing';
 import Workflow from '../pages/home/pages/Workflow';
 import Loader from '../components/Loader';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Contact from '../pages/home/pages/Contact';
 
 const HomeRoutes = ({ lenis, ScrollTrigger }) => {
   const [progress, setProgress] = useState(0);
@@ -209,7 +210,8 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/workflow" element={<Workflow />} />
-            <Route path="/about-us" element={<About />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>
