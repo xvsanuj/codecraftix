@@ -15,7 +15,11 @@ const Loader = ({ progress }) => {
             }
         };
 
-        updateWidth();
+        // Wait for fonts to load before calculating width
+        document.fonts.ready.then(() => {
+            updateWidth();
+        });
+
         window.addEventListener('resize', updateWidth);
 
         return () => window.removeEventListener('resize', updateWidth);
@@ -27,7 +31,7 @@ const Loader = ({ progress }) => {
 
     return (
         <div className="h-screen select-none w-full relative bg-white opacity-0 flex items-center justify-center" ref={element}>
-            <div className="absolute uppercase font-semibold" style={{ width: `${width}px` }}>
+            <div className="absolute uppercase font-semibold" style={{ width: `${width}px`, left: '50%', transform: 'translateX(-50%)' }}>
                 <div>
                     <h1 ref={elementDims} className="opacity-20 whitespace-nowrap lg:text-8xl text-[5.5vh] overflow-hidden absolute top-1/2 transform -translate-y-1/2">
                         Craftix Studio

@@ -6,6 +6,9 @@ const Bookings = () => {
                     <h1 className='font-bold text-center text-6xl lg:text-9xl uppercase leading-none flex items-center'>bookings</h1>
                     <p className='lg:text-lg text-sm bebas tracking-widest' style={{ wordSpacing: "3.4vw" }}>book an appointment with us.</p>
                 </div>
+                <div className='w-full h-full bg-red-500'>
+                    
+                </div>
             </div>
         </div>
     )
