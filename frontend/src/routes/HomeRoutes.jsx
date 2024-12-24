@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/home/pages/Home';
-import ErrorPage from '../pages/home/ErrorPage';
-import Projects from '../pages/home/pages/Projects';
-import Navbar from '../components/Navbar';
-import gsap from 'gsap';
-import Bookings from '../pages/home/pages/Bookings';
-import About from '../pages/home/pages/About';
-import Pricing from '../pages/home/pages/Pricing';
-import Workflow from '../pages/home/pages/Workflow';
-import Loader from '../components/Loader';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Contact from '../pages/home/pages/Contact';
+import React, { useEffect, useRef, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "../pages/home/pages/Home";
+import ErrorPage from "../pages/home/ErrorPage";
+import Projects from "../pages/home/pages/Projects";
+import Navbar from "../components/Navbar";
+import gsap from "gsap";
+import Bookings from "../pages/home/pages/Bookings";
+import About from "../pages/home/pages/About";
+import Pricing from "../pages/home/pages/Pricing";
+import Workflow from "../pages/home/pages/Workflow";
+import Loader from "../components/Loader";
+import { useLocation, useNavigate } from "react-router-dom";
+import Contact from "../pages/home/pages/Contact";
 
 const HomeRoutes = ({ lenis, ScrollTrigger }) => {
   const [progress, setProgress] = useState(0);
@@ -21,7 +21,7 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
   const [isSocial, setIsSocial] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
   const [isExclusion, setIsExclusion] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [isHover, setIsHover] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const textRef = useRef();
@@ -34,12 +34,12 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
   useEffect(() => {
     const lerp = (start, end, factor) => start * (1 - factor) + end * factor;
     const setter = {
-      x: gsap.quickSetter(cursor.current, 'x', 'px'),
-      y: gsap.quickSetter(cursor.current, 'y', 'px'),
-      rotation: gsap.quickSetter(cursor.current, 'rotation', 'deg'),
-      scaleX: gsap.quickSetter(cursor.current, 'scaleX'),
-      scaleY: gsap.quickSetter(cursor.current, 'scaleY'),
-      innerRotation: gsap.quickSetter(inner.current, 'rotation', 'deg'),
+      x: gsap.quickSetter(cursor.current, "x", "px"),
+      y: gsap.quickSetter(cursor.current, "y", "px"),
+      rotation: gsap.quickSetter(cursor.current, "rotation", "deg"),
+      scaleX: gsap.quickSetter(cursor.current, "scaleX"),
+      scaleY: gsap.quickSetter(cursor.current, "scaleY"),
+      innerRotation: gsap.quickSetter(inner.current, "rotation", "deg"),
     };
 
     const handleMouseMove = (e) => {
@@ -52,7 +52,7 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     const tickerFunction = () => {
       smoothPosition.x = lerp(smoothPosition.x, mousePosition.x, 0.1);
@@ -82,7 +82,7 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
     gsap.ticker.fps(90000);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       gsap.ticker.remove(tickerFunction);
     };
   }, []);
@@ -94,10 +94,10 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
     const handleLoad = () => {
       const elapsedTime = Date.now() - startTime;
       const remainingTime = Math.max(0, elapsedTime);
-      
+
       setTimeout(() => {
         progressInterval = setInterval(() => {
-          setProgress(prev => {
+          setProgress((prev) => {
             const newProgress = prev + (100 - prev) * 0.1;
             if (newProgress >= 99.9) {
               clearInterval(progressInterval);
@@ -114,7 +114,7 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
     };
 
     const simulateInitialProgress = setInterval(() => {
-      setProgress(prev => {
+      setProgress((prev) => {
         if (prev >= 70) {
           clearInterval(simulateInitialProgress);
           return prev;
@@ -123,18 +123,18 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
       });
     }, 100);
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       handleLoad();
     } else {
-      window.addEventListener('load', handleLoad);
-      document.addEventListener('DOMContentLoaded', handleLoad);
+      window.addEventListener("load", handleLoad);
+      document.addEventListener("DOMContentLoaded", handleLoad);
     }
 
     return () => {
       clearInterval(simulateInitialProgress);
       clearInterval(progressInterval);
-      window.removeEventListener('load', handleLoad);
-      document.removeEventListener('DOMContentLoaded', handleLoad);
+      window.removeEventListener("load", handleLoad);
+      document.removeEventListener("DOMContentLoaded", handleLoad);
     };
   }, []);
 
@@ -144,20 +144,20 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
         scale: 1,
         opacity: 1,
         duration: 0.3,
-        ease: 'expo',
+        ease: "expo",
       });
     } else {
       gsap.to(textRef.current, {
         scale: 0,
         opacity: 0,
         duration: 0.3,
-        ease: 'expo',
+        ease: "expo",
       });
     }
   }, [text, isHover]);
 
   const handleLink = async (path) => {
-    gsap.set(transitionPage.current, { top: '100vh' });
+    gsap.set(transitionPage.current, { top: "100vh" });
 
     const tl = gsap.timeline();
 
@@ -206,7 +206,10 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
                 />
               }
             />
-            <Route path="/projects" element={<Projects />} />
+            <Route
+              path="/projects"
+              element={<Projects setText={setText} setIsHover={setIsHover} handleLink={handleLink} />}
+            />
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/workflow" element={<Workflow />} />
@@ -218,10 +221,10 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
       )}
       <div
         ref={cursor}
-        className={`cursor ${isHover ? 'scale-up-1' : ''} ${
-          isMenu ? 'scale-up-2' : ''
-        } ${isSocial ? 'scale-up-3' : ''} ${
-          isExclusion ? 'exclusion' : ''
+        className={`cursor ${isHover ? "scale-up-1" : ""} ${
+          isMenu ? "scale-up-2" : ""
+        } ${isSocial ? "scale-up-3" : ""} ${
+          isExclusion ? "exclusion" : ""
         } rounded-full hidden lg:block`}
       >
         <div ref={inner} className="cursorInner relative rounded-full">
@@ -229,9 +232,11 @@ const HomeRoutes = ({ lenis, ScrollTrigger }) => {
             <span ref={textRef}>{text}</span>
           </div>
         </div>
-        
       </div>
-      <div ref={transitionPage} className="h-screen w-full bg-orange-600 fixed top-[100vh] left-0 z-[100]"></div>
+      <div
+        ref={transitionPage}
+        className="h-screen w-full bg-orange-600 fixed top-[100vh] left-0 z-[100]"
+      ></div>
     </div>
   );
 };

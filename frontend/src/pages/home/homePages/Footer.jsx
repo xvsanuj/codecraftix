@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className='h-fit w-full relative pt-12'>
       <div>
-        <h1 className='uppercase font-semibold text-xl pt-4 lg:px-32 pl-10'>Social media and contacts</h1>
+        <h1 className='uppercase font-semibold text-sm pt-4 lg:px-32 pl-10'>Social media and contacts</h1>
         <div className='lg:mt-14 mt-10'>
           {socialMedia.map((platform, index) => (
             <a 
@@ -21,15 +21,15 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               key={index} 
-              className='opener-divs h-32 w-full flex items-center border-b-[1px] relative cursor-pointer border-black' 
+              className='opener-divs lg:h-32 h-24 w-full flex items-center border-b-[1px] relative cursor-pointer border-black' 
               style={index === 0 ? { borderTop: '1px solid black' } : {}}
             >
-              <h1 className='font-medium lg:text-4xl text-3xl lg:px-32 pl-10'>{platform.name}</h1>
+              <h1 className='font-medium lg:text-4xl text-2xl lg:px-32 pl-10'>{platform.name}</h1>
               <div className='flex items-center absolute gap-6 overflow-hidden top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 h-0 w-full bg-orange-600 text-white'>
                 {[1, 2].map((_, rowIndex) => (
                   <div key={rowIndex} className='footer-div gap-6 flex items-center'>
                     {Array(15).fill(null).map((_, i) => (
-                      <h1 key={i} className='text-3xl helvetica'>
+                      <h1 key={i} className='lg:text-3xl helvetica'>
                         {platform.name}
                       </h1>
                     ))}

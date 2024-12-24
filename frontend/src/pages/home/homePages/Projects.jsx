@@ -78,7 +78,7 @@ const Projects = ({ setIsHover, setText, handleLink }) => {
     });
     if (window.innerWidth > 1024) {
       gsap.from(".project-cards-1", {
-        y: 400,
+        y: 200,
         opacity: 0,
         duration: 1,
         stagger: .3,
@@ -102,14 +102,14 @@ const Projects = ({ setIsHover, setText, handleLink }) => {
         },
       });
       gsap.from(".project-cards-3", {
-        y: 400,
+        y: 200,
         opacity: 0,
         duration: 1,
         stagger: .3,
         scrollTrigger: {
           trigger: ".projects",
           start: "60% 60%",
-          end: "90% top",
+          end: "70% top",
           scrub: true
         },
       });
@@ -157,12 +157,12 @@ const Projects = ({ setIsHover, setText, handleLink }) => {
               <div
                 onMouseEnter={() => { setText('Show'); setIsHover(true) }}
                 onMouseLeave={() => { setIsHover(false); setText("") }}
-                className="lg:h-[70vh] h-[50vh] cursor-pointer overflow-hidden rounded-3xl w-full lg:w-[25vw] bg-zinc-600"
+                className="lg:h-[70vh] hover:scale-95 transition-all duration-700 h-[50vh] cursor-pointer overflow-hidden rounded-3xl w-full lg:w-[25vw] bg-zinc-600"
               >
                 <img
                   src={project.image}
                   alt=""
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full hover:scale-110 transition-all duration-700 object-cover object-center"
                 />
               </div>
               <p className="font-base lg:text-2xl text-xl px-2 py-4 helvetica flex items-center">
@@ -178,12 +178,12 @@ const Projects = ({ setIsHover, setText, handleLink }) => {
               <div
                 onMouseEnter={() => { setText('Show'); setIsHover(true) }}
                 onMouseLeave={() => { setIsHover(false); setText("") }}
-                className="lg:h-[70vh] h-[50vh] cursor-pointer overflow-hidden rounded-3xl lg:w-[25vw] w-full bg-zinc-600"
+                className="lg:h-[70vh] hover:scale-95 transition-all duration-700 h-[50vh] cursor-pointer overflow-hidden rounded-3xl lg:w-[25vw] w-full bg-zinc-600"
               >
                 <img
                   src={project.image}
                   alt=""
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full hover:scale-110 transition-all duration-700 object-cover object-center"
                 />
               </div>
               <p className="font-base lg:text-2xl text-xl px-2 py-4 helvetica flex items-center">

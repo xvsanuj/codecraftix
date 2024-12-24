@@ -15,7 +15,6 @@ const Loader = ({ progress }) => {
             }
         };
 
-        // Wait for fonts to load before calculating width
         document.fonts.ready.then(() => {
             updateWidth();
         });
@@ -25,7 +24,7 @@ const Loader = ({ progress }) => {
     }, []);
 
     return (
-        <div className="h-screen select-none w-full relative bg-white flex items-center justify-center" ref={element}>
+        <div className="lg:h-screen h-[85vh] select-none w-full relative bg-white flex items-center justify-center" ref={element}>
             <div className="absolute uppercase font-semibold" style={{ width: `${width}px`, left: '50%', transform: 'translateX(-50%)' }}>
                 <div className="relative">
                     <h1 ref={elementDims} className="opacity-20 whitespace-nowrap lg:text-8xl text-[5.5vh] overflow-hidden absolute top-1/2 transform -translate-y-1/2 animate-fade-in">
