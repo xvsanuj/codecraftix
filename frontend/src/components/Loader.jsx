@@ -27,7 +27,7 @@ const Loader = ({ progress }) => {
 
     return (
         <div className="h-screen select-none w-full relative bg-white opacity-0" ref={element}>
-            <div style={{ paddingRight: `${width}px` }} className="absolute lg:top-1/2 top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 uppercase font-semibold">
+            <div className="absolute lg:top-1/2 top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 uppercase font-semibold" style={{ width: `${width}px` }}>
                 <div>
                     <h1 ref={elementDims} className="opacity-20 whitespace-nowrap lg:text-8xl text-[5.5vh] overflow-hidden absolute top-1/2 transform -translate-y-1/2">
                         Craftix Studio
